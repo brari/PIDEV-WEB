@@ -70,6 +70,136 @@ class Patisserie
      */
     private $idprop;
 
+    /**
+     * @return int
+     */
+    public function getIdp()
+    {
+        return $this->idp;
+    }
+
+    /**
+     * @param int $idp
+     */
+    public function setIdp($idp)
+    {
+        $this->idp = $idp;
+    }
+
+    /**
+     * @return string
+     */
+    public function getNom()
+    {
+        return $this->nom;
+    }
+
+    /**
+     * @param string $nom
+     */
+    public function setNom($nom)
+    {
+        $this->nom = $nom;
+    }
+
+    /**
+     * @return string
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * @param string $adresse
+     */
+    public function setAdresse($adresse)
+    {
+        $this->adresse = $adresse;
+    }
+
+    /**
+     * @return int
+     */
+    public function getContact()
+    {
+        return $this->contact;
+    }
+
+    /**
+     * @param int $contact
+     */
+    public function setContact($contact)
+    {
+        $this->contact = $contact;
+    }
+
+    /**
+     * @return string
+     */
+    public function getMail()
+    {
+        return $this->mail;
+    }
+
+    /**
+     * @param string $mail
+     */
+    public function setMail($mail)
+    {
+        $this->mail = $mail;
+    }
+
+    /**
+     * @return string
+     */
+    public function getUrl()
+    {
+        return $this->url;
+    }
+
+    /**
+     * @param string $url
+     */
+    public function setUrl($url)
+    {
+        $this->url = $url;
+    }
+
+    /**
+     * @return float
+     */
+    public function getRating()
+    {
+        return $this->rating;
+    }
+
+    /**
+     * @param float $rating
+     */
+    public function setRating($rating)
+    {
+        $this->rating = $rating;
+    }
+
+    /**
+     * @return int
+     */
+    public function getIdprop()
+    {
+        return $this->idprop;
+    }
+
+    /**
+     * @param int $idprop
+     */
+    public function setIdprop($idprop)
+    {
+        $this->idprop = $idprop;
+    }
+
+
+
 
 }
 

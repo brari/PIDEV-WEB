@@ -12,6 +12,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
         <link href="{{ asset('Patisserie/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
         <link href="{{ asset('Patisserie/css/style.css') }}" rel='stylesheet' type='text/css' />
+        <link href="{{ asset('Patisserie/css/patisserie.css') }}" rel='stylesheet' type='text/css' />
         <script src="{{ asset('Patisserie/js/jquery-1.11.0.min.js') }}"></script>
         <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
         <!---- start-smoth-scrolling---->
@@ -64,10 +65,15 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                     {% if (app.user) %}
                         <li class="dropdown">
                             <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                <img src="{{ asset('Patisserie/images/team-2.jpg')}}"  class="img-circle" width="60" height="60"/> {{ app.user.username }}
+                                {% if (app.user.photo==null) %}
+                                <img src="{{ asset('Images/index.png')}}"  class="img-circle" width="60" height="60"/> {{ app.user.username }}
+                                {% else %}
+                                <img src="{{ asset('Images/' ~ app.user.photo)}}"  class="img-circle" width="60" height="60"/> {{ app.user.username }}
+                                {% endif %}
                             </a>
+
                             <ul class="dropdown-menu" role="menu">
-                                <li><a href="{{ path('interface_forum') }}">Mon profile</a></li>
+                                <li><a href="{{ path('fos_user_profile_show') }}">Mon profile</a></li>
                                 <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
                             </ul>
                         </li>
@@ -87,13 +93,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                             </div>
                             <ul class="nav" id="nav">
                                 <li class="active"><a href="{{ path('interface_principal') }}" class="active">Home</a></li>
-                                <li><a href="{{ path('interface_patisseries') }}">Patisseries</a></li>
-                                <li><a href="{{ path('interface_forum') }}">Forum</a></li>
-                                <li><a href="{{ path('interface_evenements') }}">Evenement</a></li>
-                                <li><a href="#">Organisation des fêtes</a></li>
-                                <li><a href="#">Reclamation</a></li>
+                                <a href="{{ path('interface_patisseries') }}">Patisseries</a>
+                                <a href="{{ path('interface_forum') }}">Forum</a>
+                                <a href="{{ path('interface_evenements') }}">Evenement</a>
+                                <a href="#">Organisation des fêtes</a>
+                                <a href="#">Reclamation</a>
                                 {#<li><a href="#">Mon Compte</a></li> #}
-                                <li><a href="#">Contact</a></li>
+                                <a href="#">Contact</a>
                             </ul>
                             <!----start-top-nav-script---->
                             <script type="text/javascript" src="{{ asset('Patisserie/js/responsive-nav.js') }}"></script>

@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Patisseries</h1>
+    <div class="pat">
+        <ul>
+            {% for patisserie in patisseries %}
+            <li>
+                <h2><a href="#">{{patisserie.nom}}</a></h2>
+                {% if patisserie.getUrl==null %}
+                    <img src="{{ asset('Images/default.jpg') }}" width="340" height="243" alt="Image">
+                {% else %}
+                    <img src="{{ asset('Images/' ~ patisserie.url) }}" width="340" height="243" alt="Image">
+                {% endif %}
+
+            </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}

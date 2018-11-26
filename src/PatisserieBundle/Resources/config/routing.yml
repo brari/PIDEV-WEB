@@ -1,0 +1,3 @@
+patisserie_homepage:
+    path:     /
+    defaults: { _controller: PatisserieBundle:Patisserie:afficher }
