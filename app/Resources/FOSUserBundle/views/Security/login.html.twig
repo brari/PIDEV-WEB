@@ -1,0 +1,11 @@
+{% extends "@FOSUser/layout.html.twig" %}
+
+{# {% extends "@User/Default/authenticate.html.twig" %} #}
+
+{% block description %} <h3>Bienvenue dans votre annuaire de patisserie en ligne.</br>Authentifiez vous pour consulter la liste des patisseries et profiter des services.</br> </h3> {% endblock %}
+
+{% block h2 %} <h2>Remplir le formulaire pour se connecter</h2> {% endblock %}
+
+{% block fos_user_content %}
+    {{ include('@FOSUser/Security/login_content.html.twig') }}
+{% endblock fos_user_content %}

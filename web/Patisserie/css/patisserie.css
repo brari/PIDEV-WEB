@@ -1,9 +1,9 @@
 ul {
-	list-style: none;
 	margin: 25px 0 0;
-	position: center;
+	float: center;
 }
 .pat ul{
+	list-style: none;
 	margin: 25px 0 0;
 	overflow: hidden;
 }
@@ -32,7 +32,29 @@ ul {
 	border-bottom: 1px solid #3B0405; 
 	border-top: 1px solid #3B0405;
 }
-
+.pat ul li a{
+	color: #696969;
+}
 .pat ul li a:hover{
 	color: #3B0405;
+}
+.recherche form{
+	border-radius: 60px;
+}
+.recherche form input#search {
+	background: #A9A9A9;
+	font-style:italic;
+	height: 25px;
+	line-height: 25px;
+	margin-left:0;
+	padding: 0;
+	width: 300px;
+}
+.recherche form input#searchbtn {
+	background: url(../images/im.png) no-repeat;
+	border: 0;
+	margin-right:0;
+	height: 25px;
+	width: 25px;
+	border-radius: 20px;
 }

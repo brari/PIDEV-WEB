@@ -36,5 +36,6 @@ services:
 
     #added by me
     AnnuaireBundle\Service\FileUploader:
+        resource: '../../src/AnnuaireBundle/Service/FileUploader'
         arguments:
             $targetDirectory: 'C:\wamp64\www\AnnuaireWeb\web\Images'

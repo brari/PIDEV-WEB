@@ -21,6 +21,11 @@ class AppKernel extends Kernel
             new AnnuaireBundle\AnnuaireBundle(),
             new UserBundle\UserBundle(),
             new PatisserieBundle\PatisserieBundle(),
+
+            new blackknight467\StarRatingBundle\StarRatingBundle(),
+            new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
+            new Ivory\SerializerBundle\IvorySerializerBundle(),
+            new Http\HttplugBundle\HttplugBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

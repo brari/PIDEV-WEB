@@ -1,0 +1,22 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+
+    <h1> Détails de la patisserie {{patisserie.nom}} </h1>
+    <div>
+    <ul>
+        <li>
+                {% if patisserie.getUrl==null %}
+                    <img src="{{ asset('Images/default.jpg') }}" width="340" height="243" alt="Image">
+                {% else %}
+                    <img src="{{ asset('Images/' ~ patisserie.url) }}" width="340" height="243" alt="Image">
+                {% endif %}
+        </li>
+        <li>Adresse: {{ patisserie.adresse }}</li>
+        <li>Contact: {{ patisserie.contact }}</li>
+        <li>Mail: {{ patisserie.mail }}</li>
+        {#<li>Rating: {{ patisserie.rating|rating }}</li>#}
+    </ul>
+    </div>
+
+
+{% endblock %}

@@ -1,11 +1,24 @@
 {% extends 'base.html.twig' %}
 {% block body %}
-    <h1>Patisseries</h1>
+    <h1><center>Les Patisseries de l'annuaire</center></h1>
+
+    <div class="recherche">
+    <form action="{{ path('patisserie_homepage') }}" style="float: right">
+        <input type="text" placeholder="Nom de la patisserie" id="search" name="nomp">
+        <input type="submit" value="" id="searchbtn">
+    </form>
+        {% if app.user %}
+            <a href="{{ path('patisserie_ajout',{'id':app.user.id}) }}">Ajouter une patisserie</a>
+        {% else %}
+            <a href="{{ path('patisserie_ajout',{'id':0}) }}">Ajouter une patisserie</a>
+        {% endif %}
+    </div>
+
     <div class="pat">
         <ul>
             {% for patisserie in patisseries %}
             <li>
-                <h2><a href="#">{{patisserie.nom}}</a></h2>
+                <h2><a href="{{ path('patisserie_detail',{'id':patisserie.idp}) }}">{{patisserie.nom}}</a></h2>
                 {% if patisserie.getUrl==null %}
                     <img src="{{ asset('Images/default.jpg') }}" width="340" height="243" alt="Image">
                 {% else %}

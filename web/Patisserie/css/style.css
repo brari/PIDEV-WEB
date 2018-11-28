@@ -74,7 +74,7 @@ body a{
     -o-transition: all 0.3s ease;
     transition: all 0.3s ease;
 }
-.menu li a:hover,.menu li.active a{
+.menu li a:hover,.menu li.active a,.nav a:hover{
     color:#3B0405;
     text-decoration: none;
 }
@@ -201,6 +201,13 @@ ul.nav li.active a:after {
     .menu ul li a span {
         margin: 0 auto;
     }
+}
+.nav a{
+	color: #fffcfc;
+	font-size: 140%;
+	margin-left: 20px;
+	width:100%
+	
 }
 .connexion a{	
 	color: #fffcfc;

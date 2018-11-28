@@ -13,7 +13,13 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <link href="{{ asset('Patisserie/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
         <link href="{{ asset('Patisserie/css/style.css') }}" rel='stylesheet' type='text/css' />
         <link href="{{ asset('Patisserie/css/patisserie.css') }}" rel='stylesheet' type='text/css' />
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+
         <script src="{{ asset('Patisserie/js/jquery-1.11.0.min.js') }}"></script>
+
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js"></script>
+        <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+
         <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
         <!---- start-smoth-scrolling---->
         <script type="text/javascript" src="{{ asset('Patisserie/js/move-top.js') }}"></script>
@@ -86,9 +92,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 <div class="container">
                     <div class="header">
                         <div class="menu">
-                            <a class="toggleMenu" href="#"><img src="{{ asset('Patisserie/images/menu-icon.png') }}" alt="icone-menu" /> </a>
+                            {#<a class="toggleMenu" href="#"><img src="{{ asset('Patisserie/images/menu-icon.png') }}" alt="icone-menu" /> </a>#}
                             <div class="banner-bottom">
-                                <a href="index.html"><img src="{{ asset('Patisserie/images/logo.png') }}" alt=""></a>
+                                <a href="#"><img src="{{ asset('Patisserie/images/logo.png') }}" alt=""></a>
                                 <h1>L<span>e</span> C<span>o</span>in <span>P</span>a<span>ti</span>ss<span>i</span>er</h1>
                             </div>
                             <ul class="nav" id="nav">

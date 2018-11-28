@@ -1,6 +1,6 @@
 <?php
 
-namespace AnnuaireBundle\Entity;
+namespace PatisserieBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
 
