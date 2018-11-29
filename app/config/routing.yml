@@ -1,6 +1,6 @@
 patisserie:
     resource: "@PatisserieBundle/Resources/config/routing.yml"
-    prefix:   /patisserie
+    prefix:   /annuaire
 
 user:
     resource: "@UserBundle/Resources/config/routing.yml"

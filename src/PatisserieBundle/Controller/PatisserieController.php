@@ -17,26 +17,42 @@ use PatisserieBundle\Entity\Patisserie;
 use PatisserieBundle\Form\PatisserieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use UserBundle\Entity\User;
 
 class PatisserieController extends Controller
 {
     public function afficherAction(Request $request){
+        $id=$this->getUser()->getid();
         if($request->query->get('nomp')!=null){
             $em=$this->getDoctrine()->getManager();
-            $patisseries=$em->getRepository("PatisserieBundle:Patisserie")->findPatisserie($request->query->get('nomp'));
-            return $this->render('@Patisserie/affiche.html.twig',array('patisseries'=>$patisseries));
+            $patisseries=$em->getRepository("PatisserieBundle:Patisserie")->findMaPatisserie($request->query->get('nomp'),$id);
+            return $this->render('@Patisserie/Patissier/affiche.html.twig',array('patisseries'=>$patisseries));
         }
         else {
-            $patisserie = $this->getDoctrine()->getRepository(Patisserie::class)->findAll();
-            return $this->render('@Patisserie/affiche.html.twig', array('patisseries' => $patisserie));
+            $patisserie = $this->getDoctrine()->getRepository(Patisserie::class)->mesPatisseries($id)
+             ;
+            return $this->render('@Patisserie/Patissier/affiche.html.twig', array('patisseries' => $patisserie));
         }
     }
 
-    public function ajouterAction(Request $request, $id)
+    public function afficherclientAction(Request $request){
+        if($request->query->get('nomp')!=null){
+            $em=$this->getDoctrine()->getManager();
+            $patisseries=$em->getRepository("PatisserieBundle:Patisserie")->findPatisserie($request->query->get('nomp'));
+            return $this->render('@Patisserie/Client/affiche.html.twig',array('patisseries'=>$patisseries));
+        }
+        else {
+            $patisserie = $this->getDoctrine()->getRepository(Patisserie::class)->findAll();
+            return $this->render('@Patisserie/Client/affiche.html.twig', array('patisseries' => $patisserie));
+        }
+    }
+
+    public function ajouterAction(Request $request)
     {
         $patisserie = new Patisserie();
         $form = $this->createForm(PatisserieType::class, $patisserie);
         $form->handleRequest($request);
+        $id=$this->getUser()->getid();
 
         if ($form->isSubmitted() && $form->isValid()) {
             if($request->hasSession()){
@@ -60,7 +76,7 @@ class PatisserieController extends Controller
             return $this->redirectToRoute('patisserie_detail',array('id'=>$patisserie->getIdp()));
         }
 
-        return $this->render('@Patisserie/ajouter.html.twig', array(
+        return $this->render('@Patisserie/Patissier/ajouter.html.twig', array(
             'patisseries' => $patisserie,
             'form' => $form->createView(),
         ));
@@ -69,8 +85,20 @@ class PatisserieController extends Controller
     public function detailAction(Request $request){
         $id=$request->get('id');
         $patisserie=$this->getDoctrine()->getRepository(Patisserie::class)->find($id);
-        return $this->render('@Patisserie/detail.html.twig',array('patisserie'=>$patisserie));
+        return $this->render('@Patisserie/Patissier/detail.html.twig',array('patisserie'=>$patisserie));
     }
 
-    //public function detailP
+    public function modifierAction(Request $request,$id)
+    {
+        $patisserie= $this->getDoctrine()->getRepository(Patisserie::class)->find($id);
+        $form= $this->createForm(PatisserieType::class,$patisserie);
+        $form->handleRequest($request);
+        if ($form->isSubmitted()){
+            $em= $this->getDoctrine()->getManager();
+            $em->flush();
+            return $this->redirectToRoute("patisserie_detail");
+        }
+        return $this->render("@Patisserie/Patissier/modifier.html.twig",
+            array("form_modifier"=>$form->createView(),"patisserie"=>$patisserie));
+    }
 }

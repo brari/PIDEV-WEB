@@ -2,6 +2,10 @@ annuaire_homepage:
     path:     /
     defaults: { _controller: AnnuaireBundle:Default:index }
 
+redirection:
+    path:     /redirection
+    defaults: { _controller: AnnuaireBundle:Navigation:redirection }
+
 interface_principal:
     path:     /interfaceAccueil
     defaults: { _controller: AnnuaireBundle:Navigation:home }

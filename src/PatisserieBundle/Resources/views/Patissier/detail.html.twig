@@ -1,7 +1,9 @@
-{% extends 'base.html.twig' %}
+{% extends '@Annuaire/patissier.html.twig' %}
 {% block body %}
 
     <h1> Détails de la patisserie {{patisserie.nom}} </h1>
+    <p>Voulez vous <a href="{{ path('patisserie_modifier',{'id':patisserie.idp}) }}">modifier la patisserie</a>? ou la
+        <a href="{{ path('patisserie_modifier',{'id':patisserie.idp}) }}">supprimer</a>?</p>
     <div>
     <ul>
         <li>

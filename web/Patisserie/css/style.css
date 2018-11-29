@@ -202,12 +202,11 @@ ul.nav li.active a:after {
         margin: 0 auto;
     }
 }
-.nav a{
+.navliste a{
 	color: #fffcfc;
 	font-size: 140%;
 	margin-left: 20px;
-	width:100%
-	
+	width:100%	
 }
 .connexion a{	
 	color: #fffcfc;
@@ -657,7 +656,8 @@ img.port-pic {
 .footer{
     background:url(../images/footer-banner.png) no-repeat;
     background-size:100% 100%;
-    min-height:580px;
+    min-height:260px;
+	background-position: relative;
 }
 .footer-left ul{
     padding:0px;

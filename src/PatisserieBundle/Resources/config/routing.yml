@@ -3,9 +3,18 @@ patisserie_homepage:
     defaults: { _controller: PatisserieBundle:Patisserie:afficher }
 
 patisserie_ajout:
-    path:     /ajout/{id}
+    path:     /ajout
     defaults: { _controller: PatisserieBundle:Patisserie:ajouter }
+
+patisserie_modifier:
+    path:     /modifier/{id}
+    defaults: { _controller: PatisserieBundle:Patisserie:modifier }
 
 patisserie_detail:
     path:     /affichage
     defaults: { _controller: PatisserieBundle:Patisserie:detail }
+
+client_homepage:
+  path:     /home
+  defaults: { _controller: PatisserieBundle:Patisserie:afficherclient }
+

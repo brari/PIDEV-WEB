@@ -11,8 +11,24 @@ namespace AnnuaireBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 
+
 class NavigationController extends Controller
 {
+    public function redirectionAction(){
+        $authChecker = $this->container->get('security.authorization_checker');
+        if ($authChecker->isGranted('ROLE_ADMIN')) {
+            return $this->redirectToRoute('interface_principal');
+        }
+        else if($authChecker->isGranted('ROLE_PATISSIER')){
+            return $this->redirectToRoute('patisserie_homepage');
+        }
+        else if($authChecker->isGranted('ROLE_CLIENT')){
+            return $this->redirectToRoute('client_homepage');
+        }
+        else{
+            return $this->redirectToRoute('fos_user_security_login');
+        }
+    }
     public function homeAction()
     {
         return $this->render('@Annuaire/Default/index.html.twig');
