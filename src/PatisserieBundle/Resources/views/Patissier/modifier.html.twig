@@ -1,0 +1,23 @@
+{% extends '@Annuaire/patissier.html.twig' %}
+{% block body %}
+
+    <ol>
+    <li> Modifier la patisserie {{patisserie.nom}} </li>
+    <div >
+
+            {{ form_start(form_modifier) }}
+            {{ form_widget(form_modifier) }}
+            <input type="submit" value="Modifier" onclick="return confirm('Enregistrer les modifications?')"/>
+            {{ form_end(form_modifier) }}
+    </div>
+    <br> <br><li> Supprimer {{patisserie.nom}} </li>
+
+    <div >
+        {{ form(delete_form) }}
+    </div>
+    </ol>
+    <br>
+    <a href="{{ path('patisserie_detail',{'id':patisserie.idp}) }}">Retour</a>
+
+
+{% endblock %}

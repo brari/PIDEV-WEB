@@ -7,8 +7,12 @@ patisserie_ajout:
     defaults: { _controller: PatisserieBundle:Patisserie:ajouter }
 
 patisserie_modifier:
-    path:     /modifier/{id}
+    path:     /modifier
     defaults: { _controller: PatisserieBundle:Patisserie:modifier }
+
+patisserie_supprimer:
+    path:     /supprimer
+    defaults: { _controller: PatisserieBundle:Patisserie:supprimer }
 
 patisserie_detail:
     path:     /affichage
@@ -17,4 +21,9 @@ patisserie_detail:
 client_homepage:
   path:     /home
   defaults: { _controller: PatisserieBundle:Patisserie:afficherclient }
+
+
+patisserie_liste:
+  path:     /all
+  defaults: { _controller: PatisserieBundle:Patisserie:liste }
 

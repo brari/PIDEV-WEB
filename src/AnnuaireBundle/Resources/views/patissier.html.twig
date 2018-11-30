@@ -93,16 +93,17 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <h1>L<span>e</span> C<span>o</span>in <span>P</span>a<span>ti</span>ss<span>i</span>er</h1>
                     </div>
                     <ul class="nav navliste" id="nav">
-                        {% if (app.user) %}
+                        {#{% if (app.user) %}
                             <li class="active"><a href="{{ path('patisserie_homepage',{'idp':app.user.id}) }}" class="active">Home</a></li>
                         {% else %}
                             <li class="active"><a href="{{ path('patisserie_homepage',{'idp':1}) }}" class="active">Home</a></li>
-                        {% endif %}
-                        <a href="{{ path('client_homepage') }}">Toutes les Patisseries</a>
+                        {% endif %}#}
+                        <li class="active"><a href="{{ path('patisserie_homepage') }}" class="active">Home</a></li>
+                        <a href="{{ path('patisserie_liste') }}">Toutes les Patisseries</a>
                         <a href="{{ path('interface_forum') }}">Forum</a>
                         <a href="{{ path('interface_evenements') }}">Evenement</a>
                         <a href="#">Organisation des fêtes</a>
-                        <a href="#">Reclamation</a>
+                        <a href="#">Réclamations</a>
                         {#<li><a href="#">Mon Compte</a></li> #}
                         <a href="#">Contact</a>
                     </ul>

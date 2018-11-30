@@ -51,7 +51,7 @@ ul {
 	width: 300px;
 }
 .recherche form input#searchbtn {
-	background: url(../images/im.png) center;
+	background: url(../images/im.png) no-repeat;
 	border: 0;
 	margin-right:0;
 	height: 25px;

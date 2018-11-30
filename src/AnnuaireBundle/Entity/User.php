@@ -129,14 +129,14 @@ class User
     /**
      * @var string
      *
-     * @ORM\Column(name="photo", type="string", length=255, nullable=false)
+     * @ORM\Column(name="photo", type="string", length=255, nullable=true)
      */
     private $photo;
 
     /**
      * @var string
      *
-     * @ORM\Column(name="pdf", type="string", length=255, nullable=false)
+     * @ORM\Column(name="pdf", type="string", length=255, nullable=true)
      */
     private $pdf;
 

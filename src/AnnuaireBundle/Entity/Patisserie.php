@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Patisserie
  *
- * @ORM\Table(name="patisserie")
+ * @ORM\Table(name="patisserie", indexes={@ORM\Index(name="FK_prop", columns={"idprop"})})
  * @ORM\Entity(repositoryClass="PatisserieBundle\Repository\PatisserieRepository")
  */
 class Patisserie
@@ -52,32 +52,33 @@ class Patisserie
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=200, nullable=false)
+     * @ORM\Column(name="url", type="string", length=200, nullable=true)
      */
     private $url;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="rating", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="rating", type="float", precision=10, scale=0, nullable=true)
      */
     private $rating;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="idprop", type="integer", nullable=false)
+     * @ORM\Column(name="reservation", type="boolean", nullable=false)
      */
-    private $idprop;
+    private $reservation;
 
     /**
-     * @return int
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idprop", referencedColumnName="id")
+     * })
      */
-    public function getIdp()
-    {
-        return $this->idp;
-    }
-
+    private $idprop;
 
     /**
      * @return string
@@ -176,7 +177,23 @@ class Patisserie
     }
 
     /**
-     * @return int
+     * @return bool
+     */
+    public function isReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param bool $reservation
+     */
+    public function setReservation($reservation)
+    {
+        $this->reservation = $reservation;
+    }
+
+    /**
+     * @return \User
      */
     public function getIdprop()
     {
@@ -184,13 +201,12 @@ class Patisserie
     }
 
     /**
-     * @param int $idprop
+     * @param \User $idprop
      */
     public function setIdprop($idprop)
     {
         $this->idprop = $idprop;
     }
-
 
 
 

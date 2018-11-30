@@ -7,7 +7,7 @@ use Doctrine\ORM\Mapping as ORM;
 /**
  * Patisserie
  *
- * @ORM\Table(name="patisserie")
+ * @ORM\Table(name="patisserie", indexes={@ORM\Index(name="FK_prop", columns={"idprop"})})
  * @ORM\Entity(repositoryClass="PatisserieBundle\Repository\PatisserieRepository")
  */
 class Patisserie
@@ -64,9 +64,20 @@ class Patisserie
     private $rating;
 
     /**
-     * @var integer
+     * @var boolean
      *
-     * @ORM\Column(name="idprop", type="integer", nullable=false)
+     * @ORM\Column(name="reservation", type="boolean", nullable=false)
+     */
+    private $reservation;
+
+
+    /**
+     * @var \User
+     *
+     * @ORM\ManyToOne(targetEntity="AnnuaireBundle\Entity\User")
+     * @ORM\JoinColumns({
+     *   @ORM\JoinColumn(name="idprop", referencedColumnName="id")
+     * })
      */
     private $idprop;
 
@@ -176,7 +187,7 @@ class Patisserie
     }
 
     /**
-     * @return int
+     * @return \User
      */
     public function getIdprop()
     {
@@ -184,13 +195,28 @@ class Patisserie
     }
 
     /**
-     * @param int $idprop
+     * @param \User $idprop
      */
     public function setIdprop($idprop)
     {
         $this->idprop = $idprop;
     }
 
+    /**
+     * @return bool
+     */
+    public function isReservation()
+    {
+        return $this->reservation;
+    }
+
+    /**
+     * @param bool $reservation
+     */
+    public function setReservation($reservation)
+    {
+        $this->reservation = $reservation;
+    }
 
 
 

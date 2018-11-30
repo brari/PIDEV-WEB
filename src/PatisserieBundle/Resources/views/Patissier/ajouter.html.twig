@@ -2,6 +2,11 @@
 {% block body %}
     <h1>Remplissez les champs pour ajouter une patisserie</h1>
 
-    {{ form(form) }}
+<div>
+    {{ form_start(form) }}
+    {{ form_widget(form) }}
+    <input type="submit" value="Ajouter" />
+    {{ form_end(form) }}
+</div>
 
 {% endblock %}

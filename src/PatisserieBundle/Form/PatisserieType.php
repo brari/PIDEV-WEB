@@ -3,7 +3,9 @@
 namespace PatisserieBundle\Form;
 
 use Symfony\Component\Form\AbstractType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\FileType;
+use Symfony\Component\Form\Extension\Core\Type\RadioType;
 use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
@@ -21,7 +23,7 @@ class PatisserieType extends AbstractType
             ->add('contact')
             ->add('mail')
             ->add('url',FileType::class, array('label'=>'Photo','required'=>false,))
-            ->add('Ajouter', SubmitType::class);
+            ->add('reservation',CheckboxType::class,array('label'=>'Permetez vous des reservations?',"value"=>1))
         ;
     }/**
      * {@inheritdoc}

@@ -16,6 +16,7 @@ use Ivory\GoogleMap\Overlay\SymbolPath;
 use PatisserieBundle\Entity\Patisserie;
 use PatisserieBundle\Form\PatisserieType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
+use Symfony\Component\Form\Extension\Core\Type\SubmitType;
 use Symfony\Component\HttpFoundation\Request;
 use UserBundle\Entity\User;
 
@@ -55,9 +56,7 @@ class PatisserieController extends Controller
         $id=$this->getUser()->getid();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            if($request->hasSession()){
-                $patisserie->setIdprop($id);
-            }
+            $patisserie->setIdprop($id);
             if($patisserie->getUrl()!==null) {
                 //initialize the uploader
                 $uploader = new FileUploader('C:\wamp64\www\AnnuaireWeb\web\Images');
@@ -88,17 +87,75 @@ class PatisserieController extends Controller
         return $this->render('@Patisserie/Patissier/detail.html.twig',array('patisserie'=>$patisserie));
     }
 
-    public function modifierAction(Request $request,$id)
+    public function modifierAction(Request $request)
     {
+        $id=$request->get('id');
         $patisserie= $this->getDoctrine()->getRepository(Patisserie::class)->find($id);
+        //recupere le nom de l'ancien fichier enregistré dans la base
+        $photo=$patisserie->getUrl();
+        //on met lurl a nul pour permettre l'affichage du filetype
+        //le file type prend en parametre un file donc avec un string il fait des erreurs
+        $patisserie->setUrl(null);
+        $deleteForm = $this->createDeleteForm($patisserie);
         $form= $this->createForm(PatisserieType::class,$patisserie);
         $form->handleRequest($request);
         if ($form->isSubmitted()){
+            //on vérifie si le nouveau nom de photo est toujours null, si oui on remet l'ancienne photo
+            if($patisserie->getUrl()== null){
+                $patisserie->setUrl($photo);
+            }
+            else{
+                //s'il ,n'est pas nul c'est que la personne a choisi une nouvelle photo donc on reload
+                //on garde le meme nom de photo mais le contenu change
+                $uploader = new FileUploader('C:\wamp64\www\AnnuaireWeb\web\Images');
+                $file = $patisserie->getUrl();
+                $fileName = $uploader->upload($file);
+                $patisserie->setUrl($fileName);
+            }
             $em= $this->getDoctrine()->getManager();
             $em->flush();
-            return $this->redirectToRoute("patisserie_detail");
+            return $this->redirectToRoute("patisserie_detail",array('id' => $patisserie->getIdp()));
         }
         return $this->render("@Patisserie/Patissier/modifier.html.twig",
-            array("form_modifier"=>$form->createView(),"patisserie"=>$patisserie));
+            array("form_modifier"=>$form->createView(),"patisserie"=>$patisserie,'delete_form' => $deleteForm->createView()));
+    }
+
+    /**
+     * Creates a form to delete a patisserie entity.
+     *
+     * @param Patisserie $patisserie The patisserie entity
+     *
+     * @return \Symfony\Component\Form\Form The form
+     */
+    private function createDeleteForm(Patisserie $patisserie)
+    {
+        return $this->createFormBuilder()
+            ->setAction($this->generateUrl('patisserie_supprimer', array('id' => $patisserie->getIdp())))
+            ->setMethod('DELETE')
+            ->add('Supprimer', SubmitType::class, array('attr' => array('onclick' =>
+                'return confirm("Voulez vous vraiment supprimer la patisserie?")'
+                )))
+
+            ->getForm()
+            ;
+    }
+
+    public function supprimerAction(Request $request)
+    {
+        $id=$request->get('id');
+        $patisserie= $this->getDoctrine()->getManager()->getRepository('PatisserieBundle:Patisserie')->find($id);
+        $deleteForm = $this->createDeleteForm($patisserie);
+        $deleteForm->handleRequest($request);
+        if ($deleteForm->isSubmitted() && $deleteForm->isValid()) {
+            $em = $this->getDoctrine()->getManager();
+            $em->remove($patisserie);
+            $em->flush();
+        }
+        return $this->redirectToRoute('patisserie_homepage');
+    }
+
+    public function listeAction(Request $request){
+        $patisserie = $this->getDoctrine()->getRepository(Patisserie::class)->findAllOrderedByName();
+        return $this->render('@Patisserie/Patissier/liste.html.twig', array('patisseries' => $patisserie));
     }
 }
