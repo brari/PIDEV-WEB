@@ -2,10 +2,17 @@
 {% block body %}
 
     <h1> Détails de la patisserie {{patisserie.nom}} </h1>
+
+    {% if patisserie.reservation==1 %}
+    <div>
+        <a href="{{ path('reservation_new',{'id':patisserie.idp}) }}">Ajouter Une Reservation</a>
+    </div>
+    {% endif %}
+
     <div>
     <ul>
         <li>
-                {% if patisserie.getUrl==null %}
+                {% if patisserie.getUrl()==null %}
                     <img src="{{ asset('Images/default.jpg') }}" width="340" height="243" alt="Image">
                 {% else %}
                     <img src="{{ asset('Images/' ~ patisserie.url) }}" width="340" height="243" alt="Image">

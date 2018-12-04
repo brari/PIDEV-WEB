@@ -1,3 +1,7 @@
+patisserie_reservation:
+    resource: "@PatisserieBundle/Resources/config/routing/reservation.yml"
+    prefix:   /reservation
+
 patisserie_homepage:
     path:     /
     defaults: { _controller: PatisserieBundle:Patisserie:afficher }
@@ -18,6 +22,10 @@ patisserie_detail:
     path:     /affichage
     defaults: { _controller: PatisserieBundle:Patisserie:detail }
 
+patisserie_detailclient:
+  path:     /detail
+  defaults: { _controller: PatisserieBundle:Patisserie:detailclient }
+
 client_homepage:
   path:     /home
   defaults: { _controller: PatisserieBundle:Patisserie:afficherclient }
@@ -26,4 +34,31 @@ client_homepage:
 patisserie_liste:
   path:     /all
   defaults: { _controller: PatisserieBundle:Patisserie:liste }
+
+
+reservation_index:
+  path:     /reservations
+  defaults: { _controller: PatisserieBundle:Reservation:afficher }
+  methods:  GET
+
+reservation_afficher:
+  path:     /reservationPat
+  defaults: { _controller: PatisserieBundle:Reservation:afficherPat }
+  methods:  GET
+
+reservation_new:
+  path:     /Rnew
+  defaults: { _controller: PatisserieBundle:Reservation:new }
+  methods:  [GET, POST]
+
+reservation_edit:
+  path:     /Redit
+  defaults: { _controller: PatisserieBundle:Reservation:edit }
+  methods:  [GET, POST]
+
+reservation_delete:
+  path:     /Rdelete
+  defaults: { _controller: PatisserieBundle:Reservation:delete }
+  methods:  DELETE
+
 

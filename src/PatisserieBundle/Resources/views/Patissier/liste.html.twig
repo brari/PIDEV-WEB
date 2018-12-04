@@ -16,8 +16,16 @@
         <tbody>
         {% for patisserie in patisseries %}
             <tr>
-                <td><img src="{{ asset("Images/" ~ patisserie.getUrl()) }}" alt="Photo" style="height: 70px;width: 70px" /></td>
-                <td><a href="{{ path('patisserie_detail', { 'id': patisserie.idp }) }}">{{ patisserie.nom }}</a></td>
+                <td>
+                    {% if patisserie.getUrl()==null %}
+                        <img src="{{ asset('Images/default.jpg') }}" alt="Photo" style="height: 100px;width: 100px">
+                    {% else %}
+                        <img src="{{ asset('Images/' ~ patisserie.url) }}" alt="Photo" style="height: 100px;width: 100px">
+                    {% endif %}
+
+                    {#<img src="{{ asset("Images/" ~ patisserie.getUrl()) }}" alt="Photo" style="height: 70px;width: 70px" />#}
+                </td>
+                <td>{{ patisserie.nom }}</a></td>
                 <td>{{ patisserie.adresse }}</td>
                 <td>{{ patisserie.contact }}</td>
                 <td>{{ patisserie.mail }}</td>

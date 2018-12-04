@@ -52,14 +52,14 @@ class Patisserie
     /**
      * @var string
      *
-     * @ORM\Column(name="url", type="string", length=200, nullable=false)
+     * @ORM\Column(name="url", type="string", length=200, nullable=true)
      */
     private $url;
 
     /**
      * @var float
      *
-     * @ORM\Column(name="rating", type="float", precision=10, scale=0, nullable=false)
+     * @ORM\Column(name="rating", type="float", precision=10, scale=0, nullable=true)
      */
     private $rating;
 
@@ -70,11 +70,17 @@ class Patisserie
      */
     private $reservation;
 
+    /**
+     * @var integer
+     *
+     * @ORM\Column(name="place", type="integer", nullable=true)
+     */
+    private $place;
 
     /**
      * @var \User
      *
-     * @ORM\ManyToOne(targetEntity="AnnuaireBundle\Entity\User")
+     * @ORM\ManyToOne(targetEntity="UserBundle\Entity\User")
      * @ORM\JoinColumns({
      *   @ORM\JoinColumn(name="idprop", referencedColumnName="id")
      * })
@@ -112,6 +118,22 @@ class Patisserie
     public function getAdresse()
     {
         return $this->adresse;
+    }
+
+    /**
+     * @return int
+     */
+    public function getPlace()
+    {
+        return $this->place;
+    }
+
+    /**
+     * @param int $place
+     */
+    public function setPlace($place)
+    {
+        $this->place = $place;
     }
 
     /**

@@ -7,9 +7,24 @@
 
             {{ form_start(form_modifier) }}
             {{ form_widget(form_modifier) }}
+
+        {% if patisserie.reservation==0 %}
+        <div id="nbplace" style="display: none">
+            <label>Nombre de place disponibles</label>
+            <input type="number" name="pdispo" value="{{ patisserie.place }}">
+        </div>
+         {% else %}
+             <div id="nbplace">
+                 <label>Nombre de place disponibles</label>
+                 <input type="number" name="pdispo" value="{{ patisserie.place }}">
+             </div>
+        {% endif %}
             <input type="submit" value="Modifier" onclick="return confirm('Enregistrer les modifications?')"/>
+
             {{ form_end(form_modifier) }}
     </div>
+
+
     <br> <br><li> Supprimer {{patisserie.nom}} </li>
 
     <div >
@@ -17,7 +32,21 @@
     </div>
     </ol>
     <br>
-    <a href="{{ path('patisserie_detail',{'id':patisserie.idp}) }}">Retour</a>
+
+    {#<a href="{{ path('patisserie_detail',{'id':patisserie.idp}) }}">Retour</a> #}
+
+    <script src="{{ asset('Patisserie/js/jquery-3.3.1.min.js')}}"
+            language="javascript"></script>
+    <script language="javascript">
+        $(document).ready(function(){
+            $('#res').change(
+                function () {
+                    $('#nbplace').toggle();
+                }
+            );
+
+        });
+    </script>
 
 
 {% endblock %}

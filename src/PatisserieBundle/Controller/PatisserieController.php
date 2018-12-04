@@ -56,7 +56,11 @@ class PatisserieController extends Controller
         $id=$this->getUser()->getid();
 
         if ($form->isSubmitted() && $form->isValid()) {
-            $patisserie->setIdprop($id);
+            $em = $this->getDoctrine()->getManager();
+            //relation one to many
+            $user=$em->getRepository('UserBundle:User')->find($id);
+            $patisserie->setIdprop($user);
+            //
             if($patisserie->getUrl()!==null) {
                 //initialize the uploader
                 $uploader = new FileUploader('C:\wamp64\www\AnnuaireWeb\web\Images');
@@ -67,8 +71,10 @@ class PatisserieController extends Controller
                 $patisserie->setUrl($fileName);
             }
             $patisserie->setRating(0);
+            $nb=$request->get('pdispo');
+            $patisserie->setPlace($nb);
 
-            $em = $this->getDoctrine()->getManager();
+
             $em->persist($patisserie);
             $em->flush();
 
@@ -84,7 +90,31 @@ class PatisserieController extends Controller
     public function detailAction(Request $request){
         $id=$request->get('id');
         $patisserie=$this->getDoctrine()->getRepository(Patisserie::class)->find($id);
-        return $this->render('@Patisserie/Patissier/detail.html.twig',array('patisserie'=>$patisserie));
+
+        $map=new Map();
+        $map->setAutoZoom(false);
+        $map->setCenter(new Coordinate(36.911964,10.185363));
+        $map->setMapOption('zoom',10);
+        $map->setMapOption('mapTypeId', MapTypeId::ROADMAP);
+        $marker = new Marker(
+            new Coordinate(36.911964,10.185363),
+            Animation::BOUNCE,
+            new Icon(),
+            new Symbol(SymbolPath::CIRCLE),
+            new MarkerShape(MarkerShapeType::CIRCLE, [1.1, 2.1, 1.4]),
+            ['clickable' => false]
+        );
+        $map->getOverlayManager()->addMarker($marker);
+        $map->setMapOption('width',500); $map->setMapOption('heigth',500);
+        $map->setMapOption('mapTypeId', MapTypeId::HYBRID);
+
+        return $this->render('@Patisserie/Patissier/detail.html.twig',array('patisserie'=>$patisserie,'map'=>$map));
+    }
+
+    public function detailclientAction(Request $request){
+        $id=$request->get('id');
+        $patisserie=$this->getDoctrine()->getRepository(Patisserie::class)->find($id);
+        return $this->render('@Patisserie/Client/detail.html.twig',array('patisserie'=>$patisserie,));
     }
 
     public function modifierAction(Request $request)
@@ -112,6 +142,7 @@ class PatisserieController extends Controller
                 $fileName = $uploader->upload($file);
                 $patisserie->setUrl($fileName);
             }
+            $patisserie->setPlace($request->get('pdispo'));
             $em= $this->getDoctrine()->getManager();
             $em->flush();
             return $this->redirectToRoute("patisserie_detail",array('id' => $patisserie->getIdp()));

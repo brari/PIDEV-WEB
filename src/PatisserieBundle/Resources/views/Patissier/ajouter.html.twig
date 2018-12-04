@@ -5,8 +5,30 @@
 <div>
     {{ form_start(form) }}
     {{ form_widget(form) }}
-    <input type="submit" value="Ajouter" />
+
+    <div id="nbplace" style="display: none">
+            <label>Nombre de place disponibles</label>
+            <input type="number" name="pdispo" value="0">
+    </div>
+
+    <input type="submit" value="Ajouter" onclick="return confirm('Confirmez vous l\'ajout de cette patisserie?')"/>
     {{ form_end(form) }}
+
 </div>
+
+    <script src="{{ asset('Patisserie/js/jquery-3.3.1.min.js')}}"
+            language="javascript"></script>
+    <script language="javascript">
+        $(document).ready(function(){
+
+            $('.res').change(
+                function () {
+                    $('#nbplace').toggle();
+                }
+            );
+
+        });
+    </script>
+
 
 {% endblock %}

@@ -106,3 +106,9 @@ fos_user:
 
 #star rating
 star_rating: []
+
+#Ivory Gmap
+ivory_google_map:
+    map:
+        debug: "%kernel.debug%"
+        api_key: "AIzaSyBdAHI_W5BHyjaD_i43-w4zSzUCrJYAIjo"

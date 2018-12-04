@@ -3,18 +3,22 @@
     <h1><center>Les Patisseries de l'annuaire</center></h1>
 
     <div class="recherche">
-    <form action="{{ path('patisserie_homepage') }}" style="float: right">
+    <form action="{{ path('client_homepage') }}" style="float: right">
         <input type="text" placeholder="Nom de la patisserie" id="search" name="nomp">
         <input type="submit" value="" id="searchbtn">
     </form>
-        <p>Rechercher une patisserie</p>
+        <p>Rechercher une patisserie</p> <br/>
+        {% if app.user %}
+        <a href="{{ path('reservation_index', {'id':app.user.id}) }}"> Vos reservations</a>
+        {% endif %}
+
     </div>
 
     <div class="pat">
         <ul>
             {% for patisserie in patisseries %}
             <li>
-                <h2><a href="{{ path('patisserie_detail',{'id':patisserie.idp}) }}">{{patisserie.nom}}</a></h2>
+                <h2><a href="{{ path('patisserie_detailclient',{'id':patisserie.idp}) }}">{{patisserie.nom}}</a></h2>
                 {% if patisserie.getUrl==null %}
                     <img src="{{ asset('Images/default.jpg') }}" width="340" height="243" alt="Image">
                 {% else %}

@@ -15,9 +15,15 @@
         <li>Adresse: {{ patisserie.adresse }}</li>
         <li>Contact: {{ patisserie.contact }}</li>
         <li>Mail: {{ patisserie.mail }}</li>
+        {% if patisserie.reservation %}
+        <li>Nombre de places: {{ patisserie.place }}</li>
+        {% endif %}
         {#<li>Rating: {{ patisserie.rating|rating }}</li>#}
     </ul>
     </div>
+
+    {{ ivory_google_map(map) }}
+    {{ ivory_google_api([map]) }}
     <a href="{{ path('patisserie_homepage') }}">Retour</a>
 
 

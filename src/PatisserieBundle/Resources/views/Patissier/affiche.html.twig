@@ -6,9 +6,11 @@
             <form action="{{ path('patisserie_homepage') }}" style="float: right">
                  <input type="text" placeholder="Nom de la patisserie" id="search" name="nomp">
                  <input type="submit" value="" id="searchbtn">
-             </form>
+            </form>
             <a href="{{ path('patisserie_ajout') }}">Ajouter une patisserie</a>
             <br/>
+        <a href="{{ path('reservation_afficher') }}">Les reservations dans vos patisseries</a>
+        <br/>
     </div>
 
     <div class="pat">
