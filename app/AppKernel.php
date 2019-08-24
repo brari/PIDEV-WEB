@@ -21,11 +21,22 @@ class AppKernel extends Kernel
             new AnnuaireBundle\AnnuaireBundle(),
             new UserBundle\UserBundle(),
             new PatisserieBundle\PatisserieBundle(),
+            new EvenementBundle\EvenementBundle(),
+            new Ivory\CKEditorBundle\IvoryCKEditorBundle(),
+            new Knp\Bundle\PaginatorBundle\KnpPaginatorBundle(),
+            new FeteBundle\FeteBundle(),
+            new ReclamationBundle\ReclamationBundle(),
 
             new blackknight467\StarRatingBundle\StarRatingBundle(),
             new Ivory\GoogleMapBundle\IvoryGoogleMapBundle(),
             new Ivory\SerializerBundle\IvorySerializerBundle(),
             new Http\HttplugBundle\HttplugBundle(),
+            new FrontOffice\ForumBundle\FrontOfficeForumBundle(),
+            new BackOffice\BackBundle\BackOfficeBackBundle(),
+            new FrontOffice\EventBundle\FrontOfficeEventBundle(),
+            new FrontOffice\PatisserieBundle\FrontOfficePatisserieBundle(),
+            new ProduitBundle\ProduitBundle(),
+            new recetteBundle\recetteBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

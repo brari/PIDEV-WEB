@@ -1,0 +1,224 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+<!--
+Author: W3layouts
+Author URL: http://w3layouts.com
+License: Creative Commons Attribution 3.0 Unported
+License URL: http://creativecommons.org/licenses/by/3.0/
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <title>Produit</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="keywords" content="Best Pets Responsive web template, Bootstrap Web Templates, Flat Web Templates, Android Compatible web template,
+	SmartPhone Compatible web template, free WebDesigns for Nokia, Samsung, LG, Sony Ericsson, Motorola web design" />
+    <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+    <!-- Custom Theme files -->
+    <link href="{{ asset('css/bootstrap.css') }}" type="text/css" rel="stylesheet" media="all">
+    <link href="{{ asset('css/style.css') }}" type="text/css" rel="stylesheet" media="all">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet"> <!-- font-awesome icons -->
+    <link href="{{ asset('css/lsb.css') }}" rel="stylesheet" type="text/css">
+    <link href="{{ asset('css/paginate.css') }}" rel="stylesheet" type="text/css">
+
+    <!-- //Custom Theme files -->
+    <!-- web-fonts -->
+    <link href="//fonts.googleapis.com/css?family=Lato:100,100i,300,300i,400,400i,700,700i,900,900i" rel="stylesheet">
+    <link href="//fonts.googleapis.com/css?family=Dosis:200,300,400,500,600,700,800" rel="stylesheet">
+    <!-- //web-fonts -->
+</head>
+<body>
+<!-- banner -->
+<div class="w3ls-banner about-w3lsbanner">
+    <div class="w3lsbanner-info">
+        <!-- header -->
+        <div class="header">
+            <div class="container">
+                <div class="agile_header_grid">
+                    <div class="header-mdl agileits-logo">
+                       {# <h1><a href="{{ path('acceuil_user') }}">SkiizAnimaux</a></h1>#}
+                    </div>
+
+                    <div class="clearfix"> </div>
+                </div>
+                <div class="header-nav"><!-- header-two -->
+                    <nav class="navbar navbar-default">
+                        <div class="navbar-header">
+                            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+                                <span class="sr-only">Toggle navigation</span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                                <span class="icon-bar"></span>
+                            </button>
+                        </div>
+                        <!-- top-nav -->
+                        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+                            <ul class="nav navbar-nav cl-effect-16">
+                                {#
+                                <li><a href="{{ path('acceuil_user') }}" data-hover="Acceuil">Acceuil</a></li>
+                                <li><a href="{{ path('userBoutique') }}" class="active" data-hover="Retour">Retour</a></li>
+#}
+                            </ul>
+                            <div class="clearfix"> </div>
+                        </div>
+                    </nav>
+                </div>
+            </div>
+        </div>
+        <!-- //header -->
+    </div>
+</div>
+<!-- //banner -->
+<!-- gallery -->
+<div class="agile_banner_info">
+
+    <div id="typed-strings" class="agileits_w3layouts_strings" style="alignment: right">
+        <p><i>Désolé Ce Produit  </i></p>
+        <p><i>est indisponible</i></p>
+        <p><i>Actuellement ...</i></p>
+        <p><i>Revient plus tard</i></p>
+        <p><i>Merci Pour Votre comprehension</i></p>
+        <p ><i> ♥ Le coin Patissier♥   ... </i></p>
+
+        <br>
+
+        <br>
+
+    </div>
+    <span id="typed" style="white-space:pre;"></span>
+</div>
+<div class="footer">
+    <div class="footer-top">
+        <div class="container">
+            <div class="footer-grids">
+                <div class="col-md-3 col-sm-6 footer-logo">
+                    <div class="agileits-logo">
+                    </div>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-grid">
+
+                </div>
+                <div class="col-md-3 col-sm-6 footer-list">
+                    <ul>
+
+                    </ul>
+                </div>
+                <div class="col-md-3 col-sm-6 footer-grid">
+
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+        </div>
+    </div>
+    <div class="footer-bottom">
+        <div class="container">
+            <p>© 2018 Le coin Patissier. Tous les droits sont réservés | Concu par<a >LeCOINGroup</a></p>
+        </div>
+    </div>
+</div>
+
+<!-- //modal sign in -->
+<!-- js -->
+<script src="{{ asset('js/jquery-2.2.3.min.js') }}"></script>
+
+<!-- //js -->
+<!-- ResponsiveTabs js -->
+<script src="{{ asset('js/easyResponsiveTabs.js') }}" type="text/javascript"></script>
+<script type="text/javascript">
+    $(document).ready(function () {
+        $('#horizontalTab').easyResponsiveTabs({
+            type: 'default', //Types: default, vertical, accordion
+            width: 'auto', //auto or any width like 600px
+            fit: true   // 100% fit in a container
+        });
+    });
+</script>
+<!-- //ResponsiveTabs js -->
+<!-- jarallax -->
+<script src="{{ asset('js/SmoothScroll.min.js') }}"></script>
+<script src="{{ asset('js/jarallax.js') }}"></script>
+<script type="text/javascript">
+    /* init Jarallax */
+    $('.jarallax').jarallax({
+        speed: 0.5,
+        imgWidth: 1366,
+        imgHeight: 768
+    })
+</script>
+<!-- //jarallax -->
+<!-- gallery-lightbox -->
+<script src="{{ asset('js/lsb.min.js') }}"></script>
+<script>
+    $(window).load(function() {
+        $.fn.lightspeedBox();
+    });
+</script>
+<!-- //gallery-lightbox -->
+<!-- start-smooth-scrolling -->
+<script type="text/javascript" src="{{ asset('js/move-top.js') }}"></script>
+<script type="text/javascript" src="{{ asset('js/easing.js') }}"></script>
+<script type="text/javascript">
+    jQuery(document).ready(function($) {
+        $(".scroll").click(function(event){
+            event.preventDefault();
+
+            $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+        });
+    });
+</script>
+<!-- //end-smooth-scrolling -->
+<!-- smooth-scrolling-of-move-up -->
+<script type="text/javascript">
+    $(document).ready(function() {
+        /*
+        var defaults = {
+            containerID: 'toTop', // fading element id
+            containerHoverID: 'toTopHover', // fading element hover id
+            scrollSpeed: 1200,
+            easingType: 'linear'
+        };
+        */
+
+        $().UItoTop({ easingType: 'easeOutQuart' });
+
+    });
+</script>
+<!-- //smooth-scrolling-of-move-up -->
+<!-- Bootstrap core JavaScript
+================================================== -->
+<!-- Placed at the end of the document so the pages load faster -->
+<script src="{{ asset('js/bootstrap.js') }}"></script>
+<!-- //ResponsiveTabs js -->
+<!-- banner-type-text -->
+<script src="{{ asset('js/typed.js') }}" type="text/javascript"></script>
+<script>
+    $(function(){
+
+        $("#typed").typed({
+            // strings: ["Typed.js is a <strong>jQuery</strong> plugin.", "It <em>types</em> out sentences.", "And then deletes them.", "Try it out!"],
+            stringsElement: $('#typed-strings'),
+            typeSpeed: 30,
+            backDelay:500,
+            loop: true,
+            contentType: 'html', // or text
+            // defaults to false for infinite loop
+            loopCount: false,
+            callback: function(){ foo(); },
+            resetCallback: function() { newTyped(); }
+        });
+
+        $(".reset").click(function(){
+            $("#typed").typed('reset');
+        });
+
+    });
+    function newTyped(){ /* A new typed object */ }
+
+    function foo(){ console.log("Callback"); }
+</script>
+</body>
+</html>
+{% endblock %}

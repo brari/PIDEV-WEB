@@ -1,0 +1,34 @@
+front_office_forum_homepage:
+    path:     /
+    defaults: { _controller: FrontOfficeForumBundle:Default:index }
+
+
+
+guest_house_front_office_forum_homepage:
+    path:     /
+    defaults: { _controller: FrontOfficeForumBundle:Forum:index }
+
+Acceuil_Forum:
+    path:     /acceuilforum
+    defaults: { _controller: FrontOfficeForumBundle:Forum:index }
+    
+app_forum_subject:
+    path:    /theme/{theme}
+    defaults: { _controller: FrontOfficeForumBundle:Subject:index }
+    
+notif_Forum:
+    path:     /notif
+    defaults: { _controller: FrontOfficeForumBundle:Forum:notif }
+    
+
+#app_forum:
+#    path:    /k
+#    defaults: { _controller: FrontOfficeForumBundle:Forum:index }
+
+forum_subject:
+    resource: "@FrontOfficeForumBundle/Resources/config/routing/subject.yml"
+    prefix:   /sujet
+    
+forum_comment:
+    resource: "@FrontOfficeForumBundle/Resources/config/routing/comment.yml"
+    prefix:   /comment

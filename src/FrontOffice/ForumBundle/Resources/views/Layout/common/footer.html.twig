@@ -1,0 +1,13 @@
+<footer class="footer">
+    <div class="container">
+        {% for flashMessage in app.session.flashbag.get('success') %}
+            <div class="alert alert-success alert-footer" role="alert"><strong><i class="fa fa-check"></i></strong> {{ flashMessage }}</div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('warnings') %}
+            <div class="alert alert-warning alert-footer" role="alert"><strong><i class="fa fa-warning"></i></strong> {{ flashMessage }}</div>
+        {% endfor %}
+        {% for flashMessage in app.session.flashbag.get('error') %}
+            <div class="alert alert-danger alert-footer" role="alert"><strong><i class="fa fa-close"></i></strong> {{ flashMessage }}</div>
+        {% endfor %}
+    </div>
+</footer>

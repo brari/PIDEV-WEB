@@ -1,0 +1,53 @@
+#back_office_back_homepage:
+#    path:     /
+#    defaults: { _controller: BackOfficeBackBundle:Default:index }
+
+
+guest_house_back_office_back_homepage:
+    path:     /
+    defaults: { _controller: BackOfficeBackBundle:Default:index }
+    
+guest_house_admin:
+    path:     /admin
+    defaults: { _controller: BackOfficeBackBundle:Admin:admin }
+    
+widgets:
+    path:     /widgets
+    defaults: { _controller: BackOfficeBackBundle:Admin:widgets }
+    
+charts:
+    path:     /charts
+    defaults: { _controller: BackOfficeBackBundle:Admin:charts }
+    
+getStatComment:
+    path:     /getstatcomment
+    defaults: { _controller: BackOfficeBackBundle:Admin:getStatComment }
+    
+getCommentUser:
+    path:     /getcommentuser
+    defaults: { _controller: BackOfficeBackBundle:Admin:getCommentUser }
+    
+getSubjectUser:
+    path:     /getsubjectuser
+    defaults: { _controller: BackOfficeBackBundle:Admin:getSubjectUser }
+    
+tables:
+    path:     /tables
+    defaults: { _controller: BackOfficeBackBundle:Admin:tables }
+#login:
+#    path:     /login
+#    defaults: { _controller: BackOfficeBackBundle:Admin:login }
+forms:
+    path:     /forms
+    defaults: { _controller: BackOfficeBackBundle:Admin:forms }
+panels:
+    path:     /panels
+    defaults: { _controller: BackOfficeBackBundle:Admin:panels }
+icons:
+    path:     /icons
+    defaults: { _controller: BackOfficeBackBundle:Admin:icons }
+
+
+backend_forum:
+    resource: "@BackOfficeBackBundle/Resources/config/routing/forum.yml"
+    prefix:   /forum

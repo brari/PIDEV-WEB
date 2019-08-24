@@ -1,0 +1,306 @@
+<style>
+    body{
+        background-color: #F9F9F9;
+    }
+    .block{
+        display: block;
+        margin-bottom: 15px;
+    }
+    .containt{
+        margin-left: 50px;
+        margin-right: 50px;
+        margin-bottom: 80px;
+    }
+    .user{
+        font-family: cursive;
+        font-weight: 900;
+        font-size: 20px;
+    }
+    .date-cl{
+        font-family: inherit;
+        font-size: 11px;
+        color: #9E9E9E;
+        margin-left: 8px;
+    }
+    .subject{
+        font-family: inherit;
+        font-size: 15px;
+        font-weight: normal;
+        line-height: 27px;
+        background-color: #FFFFFF;
+        color: #404852;
+        max-width: 850px;
+        border: 1px solid #EDEDED;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 50px;
+        padding: 20px 20px 20px 20px;
+        border-radius: 3px;
+    }
+    .diffsubject{
+        background-color: #DEDEDE;
+    }
+    .subject p {
+        max-width: 850px;
+        word-wrap: break-word;
+    }
+    .reponse{
+        font-family: inherit;
+        font-size: 22px;
+        font-weight: bold;
+        line-height: 25.2px;
+        color: #404852;
+        max-width: 850px;
+        margin-left: auto;
+        margin-right: auto;
+        margin-top: 28px;
+    }
+    .alert {
+        padding: 15px;
+        padding-left: 70px;
+        margin-top: 1.875rem;
+        margin-bottom: -15px;
+        position: relative;
+        border: 1px solid #aed4a5;
+        border-radius: 3px;
+        max-width: 630px;
+        margin-left: auto;
+        margin-right: auto;
+    }
+    .alert-info {
+        color: #3985a3;
+        background-color: #cfeffa;
+        border-color: #9fc8d9;
+    }
+    .alert-success{
+        color: #559944;
+        border: 1px solid #aed4a5;
+        background-color: #dbf6d3;
+    }
+    .alert-icon {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 45px;
+        float: left;
+        padding-top: 10px;
+        font-size: 1.4rem;
+        text-align: center;
+        font-weight: bold;
+        background-color: #a9daf1;
+    }
+    .alert-icon-success {
+        position: absolute;
+        left: 0;
+        top: 0;
+        bottom: 0;
+        width: 45px;
+        float: left;
+        padding-top: 10px;
+        font-size: 1.4rem;
+        text-align: center;
+        font-weight: bold;
+        background-color: #baeab0;
+    }
+    .text{
+        font-family: inherit;
+        font-size: 17px;
+        font-weight: normal;
+        line-height: 27px;
+        color: #404852;
+    }
+    .btn {
+        display: inline-block;
+        height: 40px;
+        padding: 0 15px;
+        line-height: 36px;
+        color: #FFF;
+        text-align: center;
+        text-decoration: none !important;
+        font-weight: bold;
+        background-color: #78AB4E;
+        border: 2px solid transparent;
+        cursor: pointer;
+        transition: all .3s;
+        border-radius: 3px;
+        transition-duration: .3s;
+    }
+    .btn:hover {
+        border: 2px solid #78AB4E;
+        color: #78AB4E;
+        background-color: transparent;
+    }
+    .edit-comment{
+        float: right;
+        font-size: 18px;
+    }
+    .rightspace{
+        margin-right: 9px;
+    }
+    .notif{
+        margin-right: 50px;
+        padding: 7px;
+        color: #fff;
+        background-color: #f00;
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+<div class="block-forum">
+
+
+    <div class='containt'>
+
+
+
+        {% for msg in app.session.flashbag.get('success') %}
+            <div class="alert alert-success">
+                <div class="alert-icon-success">
+                    <span class="icon icon-check"></span>
+                </div>
+                {{ msg }}
+            </div>
+        {% endfor %}
+        {% for msg in app.session.flashbag.get('info') %}
+            <div class="alert alert-info">
+                <div class="alert-icon-success">
+                    <span class="icon icon-check"></span>
+                </div>
+                {{ msg }}
+            </div>
+        {% endfor %}
+
+        <div class="subject diffsubject">
+
+            Vous êtes sur la page de la reccete : id = {{ recette.id }}
+        </div>
+        <div class="reponse">
+            {% if(comments|length == 0) %}
+                Pas des réponses pour cette recette
+            {% elseif (comments|length == 1) %}
+                1 Réponse
+            {% else %}
+                {{ comments|length }} Réponses
+            {% endif %}
+        </div>
+        {% for comment in comments %}
+            <div class="subject">
+                <div class="block">
+                    <span class="user">{{ comment.iduser.username }},</span>
+                    <span class="date-cl">{{ comment.date|date('Y-m-d H:i:s') }}</span>
+                    {% if(app.user.id == comment.iduser.id) %}
+                        <span class="edit-comment">
+                            <a class="update-comment" data-id="{{ comment.id }}"><i class="rightspace icon-edit"></i></a>
+                            <a class="delete-comment" data-id="{{ comment.id }}"><i class="icon-trash"></i></a>
+                        </span>
+                    {% endif %}
+                </div>
+                {{ comment.comment|raw }}
+            </div>
+        {% endfor %}
+
+        {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+            <form action="{{ path('front_office_patisserie_add_comment_recette', { 'recette': recette.id}) }}" method="POST">
+                <div class="reponse">Répondre</div>
+                <div class="reponse">
+                    <textarea name="comment" style="height: 200px;" required=""></textarea><br>
+                    <div><label class="text"><input type="checkbox" name="mailAlert"/> Recevoir un email lorsque quelqu'un répond à cette recette</label></div>
+                </div>
+                <div class="reponse" style="margin-top: 0px;">
+                    <input type="submit" name="commit" value="Répondre" class="btn">
+                </div>
+            </form>
+        {% endif %}
+
+
+
+    </div>
+</div>
+<script>
+    $(document).on("click", ".update-comment", function (e) {
+        var id = $(this).data('id');
+        $.ajax({
+//                    url: Routing.generate('front_office_patisserie_comment_edit', {comment: id}),
+            url: '/kk/PI/AnnuaireWeb/web/app_dev.php/pat/' + id + '/editCommentRecette',
+            type: 'GET',
+            dataType: 'JSON',
+            success: function (response) {
+                bootbox.dialog({
+                    message: response.content,
+                    title: response.title,
+                    buttons: {
+                        cancel: {
+                            label: "Annuler",
+                            className: "btn-sm btn-default",
+                        },
+                        success: {
+                            label: "Modifier",
+                            className: "btn-sm btn-primary",
+                            callback: function () {
+                                {#$.ajax({
+                                    url: $(this).attr('action'),
+                                    type: 'PUT',
+                                    data: $(this).serialize(),
+                                    success: function (response) {#}
+                                if (response.error == true) {
+                                    $('.bootbox-body').html(response.content);
+                                } else {
+                                    comment.submit();
+                                    {#                                            window.location.reload();#}
+                                }
+                                {# }
+                             });#}
+                            }
+                        }
+                    }
+                });
+            },
+            complete: function () {
+                setTimeout(function () {
+                    $('.input-comment-name').focus();
+                }, 500);
+            }
+        });
+    });
+    $(document).on("click", ".delete-comment", function (e) {
+        var id = $(this).data('id');
+        $.ajax({
+//             url: Routing.generate('front_office_patisserie_comment_delete', {comment: id}),
+            url: '/kk/PI/AnnuaireWeb/web/app_dev.php/pat/' + id + '/deleteCommentRecette',
+            type: 'GET',
+            dataType: 'JSON',
+            success: function (response) {
+                bootbox.dialog({
+                    message: response.content,
+                    title: response.title,
+                    buttons: {
+                        success: {
+                            label: "Supprimer",
+                            className: "btn-sm btn-primary",
+                            callback: function () {
+                                {#$.ajax({
+                                    url: form.attr('action'),
+                                    type: 'DELETE',
+                                    data: form.serialize(),
+                                    success: function (response) {#}
+                                if (response.error == true) {
+                                    $('.bootbox-body').html(response.content);
+                                } else {
+                                    comment.submit();
+                                    {#                                            window.location.reload();#}
+                                }
+                                {#    }
+                                });#}
+                            }
+                        },
+                        cancel: {
+                            label: "Annuler",
+                            className: "btn-sm btn-default",
+                        }
+                    }
+                });
+            }
+        });
+    });
+</script>

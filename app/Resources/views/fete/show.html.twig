@@ -1,0 +1,50 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="wthree-form">
+        <h1>Fete</h1>
+
+        <table>
+            <tbody>
+            <tr>
+                <th>Id de la fete </th>
+                <td>{{ fete.idf }}</td>
+            </tr>
+            <tr>
+                <th>Nom de la fete </th>
+                <td>{{ fete.nomF }}</td>
+            </tr>
+            <tr>
+                <th>Description de la fete </th>
+                <td>{{ fete.descriptionF }}</td>
+            </tr>
+            <tr>
+                <th>Adresse de la fete</th>
+                <td>{{ fete.adresseF }}</td>
+            </tr>
+            <tr>
+                <th>Date de la fete</th>
+                <td>{% if fete.dateF %}{{ fete.dateF|date('Y-m-d') }}{% endif %}</td>
+            </tr>
+            <tr>
+                <th>Iduser</th>
+                <td>{{ fete.iduser }}</td>0
+            </tr>
+            </tbody>
+        </table>
+
+        <ul>
+            <li>
+                <a href="{{ path('crud_index') }}">Retour à la liste</a>
+            </li>
+            <li>
+                <a href="{{ path('crud_edit', { 'idf': fete.idf }) }}">Modifier</a>
+            </li>
+            <li>
+                {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+                {{ form_end(delete_form) }}
+            </li>
+        </ul>
+    </div>
+{% endblock %}

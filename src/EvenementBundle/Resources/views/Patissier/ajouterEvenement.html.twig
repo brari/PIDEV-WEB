@@ -1,0 +1,71 @@
+{% extends '@Annuaire/patissier.html.twig' %}
+{% block body %}
+    <link href="{{ asset('styles/style.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('Evenement/css/evenement.css') }}" rel='stylesheet' type='text/css' />
+
+    <p><i><h1> ♥ Ajouter Evénement ♥</h1></i></p>
+    <div class="recherche">
+        <form action="{{ path('even_recherche_pat') }}" style="float: right">
+            <input type="text" placeholder="Nom de l'évènement" id="search" name="nomE">
+            <input type="submit" value="" id="searchbtn">
+        </form>
+    </div>
+
+    <link href="{{ asset('styles/style.css') }}" rel='stylesheet' type='text/css' />
+
+    <div class="w3ls-banner jarallax">
+        <div class="w3lsbanner-info">
+            <!-- header -->
+
+            <div class="pull-left">
+
+                <br>
+                <br>
+                <br>
+                <br>
+
+                <a href="{{ path('evenement_trier')}}" class="bouton5" >Filtre Evénement</a><br/>
+                <br>
+                <br>
+
+                <a href="{{ path('even_evenement')}}" class="bouton5">Liste Evénement</a></div>
+
+
+
+            {{ form_start(form) }}
+            <center>
+                <fieldset style="width: 50%">
+
+                    Nom évènement :*{{ form_widget(form.nom_E) }}</br>
+                    Description évènement:{{ form_widget(form.description_E)  }}</br>
+                    Adresse évènement:*{{ form_widget(form.adresse_E)  }}</br>
+                    Type évènement: {{ form_widget(form.type_E) }}</br>
+                    Date évènement: {{ form_widget(form.date_E)}}</br>
+                    Image évènement:{{ form_widget(form.image_E) }}</br>
+                    Interesses évènement:{{form_widget(form.interesses) }}</br>
+                    Capacite évènement:{{ form_widget(form.capacite) }}</br>
+                </fieldset></center>
+
+            <div  align="center">
+                <div class="col-sm-8">
+                    <input type=submit class="button--nina" style="color: #C0C0C0 " value="Ajouter">
+
+                </div>
+
+                {{ form_end(form) }}
+
+                {% if message==2 %}
+                    <script type="text/javascript">
+                        alert("erreur,vérifier les données saisies !");
+                    </script>
+                {% endif %}
+
+                {% if message==1 %}
+                    <script type="text/javascript">
+                        alert("Votre évènement a été bien ajouté");
+                    </script>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+{% endblock %}

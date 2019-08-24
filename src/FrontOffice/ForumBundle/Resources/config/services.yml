@@ -1,0 +1,4 @@
+services:
+#    front_office_forum.example:
+#        class: FrontOffice\ForumBundle\Example
+#        arguments: ["@service_id", "plain_value", "%parameter%"]

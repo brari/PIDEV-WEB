@@ -1,0 +1,55 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    </br>
+    <center><h1 style="color: #a94442;">la liste des Reclamations</h1></center>
+    </br>
+    <table class="table table-bordered fixed-table-toolbar wthree-form">
+        <thead>
+        <tr>
+            <th style="color: #9e1847;">Id</th>
+            <th style="color: #9e1847;">Type</th>
+            <th style="color: #9e1847;">Contenu</th>
+            <th style="color: #9e1847;">Date</th>
+            <th style="color: #9e1847;">Statut</th>
+            <th style="color: #9e1847;">Idreclamant</th>
+            <th style="color: #9e1847;">Reponse</th>
+            <th style="color: #9e1847;">Decision</th>
+            <th style="color: #9e1847;">Objet</th>
+            <th style="color: #9e1847;">Nomconcerne</th>
+            <th style="color: #9e1847;">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for reclamation in reclamations %}
+            <tr>
+                <td><a href="{{ path('crudRec_show', { 'id': reclamation.id }) }}">{{ reclamation.id }}</a></td>
+                <td>{{ reclamation.type }}</td>
+                <td>{{ reclamation.contenu }}</td>
+                <td>{% if reclamation.date %}{{ reclamation.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ reclamation.statut }}</td>
+                <td>{{ reclamation.idReclamant }}</td>
+                <td>{{ reclamation.reponse }}</td>
+                <td>{{ reclamation.decision }}</td>
+                <td>{{ reclamation.objet }}</td>
+                <td>{{ reclamation.nomConcerne }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('crudRec_show', { 'id': reclamation.id }) }}">Afficher</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('crudRec_edit', { 'id': reclamation.id }) }}">Traiter</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+    </br>
+    </br>
+
+    <center><b><a href="{{ path('crudRec_new') }}">Créer une nouvelle Reclamation</a></b></center>
+
+{% endblock %}

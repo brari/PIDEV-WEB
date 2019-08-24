@@ -10,4 +10,36 @@ namespace UserBundle\Repository;
  */
 class UserRepository extends \Doctrine\ORM\EntityRepository
 {
+    public function findByusersParJr($date){
+        $qb = $this->createQueryBuilder('u')
+            ->select('u')
+            ->where('u.lastLogin like :date')
+            ->setParameter(':date', '%'.$date.'%')
+            ->getQuery();
+        return $qb->getResult();
+    }
+
+    public function updateuser($id,Request $request)
+    {
+        $username = $request->get('username');
+        $email =  $request->get('email');
+        $nom =  $request->get('nom');
+        $prenom =  $request->get('prenom');
+        $query = $this->getEntityManager()->createQuery('UPDATE UserBundle:User u SET u.username = :usernam , u.nom = :nom ,u.email = :ema,u.prenom = :prenom  WHERE u.id = :idtest');
+        $query->setParameter('usernam', $username);
+        $query->setParameter('nom', $nom);
+        $query->setParameter('prenom', $prenom);
+        $query->setParameter('ema', $email);
+        $query->setParameter('idtest', $id);
+        $query->execute();
+        //  return $query->getResult();
+    }
+
+
+    public function findByUsername($username){
+        $query=$this->getEntityManager()
+            ->createQuery("SELECT r FROM UserBundle:User r WHERE r.username=:id")
+            ->setParameter('id',$username);
+        return $query->getResult();
+    }
 }

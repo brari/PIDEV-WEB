@@ -1,0 +1,93 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <link href="{{ asset('styles/style.css') }}" rel='stylesheet' type='text/css' />
+    <link href="{{ asset('Evenement/css/evenement.css') }}" rel='stylesheet' type='text/css' />
+
+    <center><p><i><h1> La liste </h1></i></p>
+        <p ><i> <h1>♥ des Evénements ♥ </h1> </i></p></center>
+
+    <div class="recherche">
+        <form action="{{ path('even_recherche_nomclt') }}" style="float: right">
+            <input type="text" placeholder="Nom de l'évènement" id="search" name="nomE">
+            <input type="submit" value="" id="searchbtn">
+        </form>
+    </div>
+
+
+    <div class="pull-left">
+
+
+    <a href="{{ path('retour_clt')}}" class="bouton5" >Accueil Event</a>
+
+        <a href="{{ path('filtre_clt')}}" class="bouton5" >Filtrer Event </a><br/>
+    </div>
+    <br>
+    <br>
+    <br>
+    <br>
+
+    <div class="focus">
+        <div class="container">
+
+            <table  class="table table-hover">
+                <thead>
+                <tr>
+                    <td bgcolor="#dcdcdc" style="color: white ;font-size: larger" align="center" > Id</td>
+                    <td bgcolor="#dcdcdc" style="color: white ;font-size: larger" align="center" > Nom</td>
+                    <td bgcolor="#dcdcdc" style="color: white;font-size:larger" align="center"> Description</td>
+                    <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Adresse</td>
+                    <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Type</td>
+                    <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Date</td>
+                    <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Image</td>
+                    <td></td>
+                    <td></td>
+                    <td></td>
+
+
+
+
+
+                </tr>
+                </thead>
+
+                <tbody>
+                {% for even in evenements %}
+                    <tr>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{  even.idE }}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{  even.nomE|raw }}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.descriptionE}}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.adresseE }}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.typeE}}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.dateE|date('d-M-Y')}}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> <img src="{{ asset('Evenement/image/' ~ even.imageE) }}"></td>
+                        {% if even.getInteresses() < even.getCapacite() %}
+                        <td bgcolor="ffe4c4" style="font-size: large ;color:-webkit-focus-ring-color" align="center"> <a href="{{ path('evenement_participe',{'idE':even.idE}) }}">Participer</a> </td>
+                        <td bgcolor="ffe4c4" style="font-size: large ;color:-webkit-focus-ring-color" align="center"> <a href="{{ path('evenement_annule',{'idE':even.idE}) }}">Annuler</a> </td>
+
+
+
+
+                        {% else %}
+                        <td bgcolor="ffe4c4" style="font-size: large ;color:-webkit-focus-ring-color" align="center"> <a href="{{ path('evenement_annule',{'idE':even.idE}) }}">Annuler</a> </td>
+                            <td bgcolor="ffe4c4" style="font-size: large ;color:darkslateblue" align="right"> {{ "Max atteind"}}</td>
+
+                        {% endif %}
+
+
+                    </tr>
+
+                {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+<br>
+
+    <center>
+        <div class="navigation">
+            {{ knp_pagination_render(evenements) }}
+        </div>
+    </center>
+
+
+{% endblock %}

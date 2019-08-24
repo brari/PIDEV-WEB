@@ -1,0 +1,22 @@
+front_office_patisserie_homepage:
+    path:     /
+    defaults: { _controller: FrontOfficePatisserieBundle:Default:index }
+
+
+front_office_patisserie_recette:
+    path:     /recette/{id}
+    defaults: { _controller: FrontOfficePatisserieBundle:Default:recette }
+
+front_office_patisserie_add_comment_recette:
+    path:    /{recette}/addCommentRecette
+    defaults: { _controller: FrontOfficePatisserieBundle:Default:addComment }
+    
+front_office_patisserie_comment_edit:
+    path:     /{comment}/editCommentRecette
+    defaults: { _controller: "FrontOfficePatisserieBundle:Default:update" }
+    
+front_office_patisserie_comment_delete:
+    path:     /{comment}/deleteCommentRecette
+    defaults: { _controller: "FrontOfficePatisserieBundle:Default:delete" }
+    
+    

@@ -6,18 +6,97 @@ redirection:
     path:     /redirection
     defaults: { _controller: AnnuaireBundle:Navigation:redirection }
 
+interface_admin:
+    path:     /interface
+    defaults: { _controller: AnnuaireBundle:Navigation:homeee }
+
+
 interface_principal:
-    path:     /interfaceAccueil
-    defaults: { _controller: AnnuaireBundle:Navigation:home }
+  path:     /interfaceAccueil
+  defaults: { _controller: AnnuaireBundle:Navigation:home }
 
 interface_patisseries:
     path:     /interfacePat
     defaults: { _controller: AnnuaireBundle:Navigation:patisseries }
 
-interface_evenements:
-    path:     /interfaceEv
-    defaults: { _controller: AnnuaireBundle:Navigation:evenement }
-
 interface_forum:
     path:     /interfaceForum
     defaults: { _controller: AnnuaireBundle:Navigation:forum }
+interface_fete:
+  path:     /interfaceFete
+  defaults: { _controller: FeteBundle:Fete:index }
+interface_reclamation:
+  path:     /interfaceReclamation
+  defaults: { _controller: ReclamationBundle:Reclamation:index }
+interface_reclamationAd:
+  path:     /interfaceReclamationAd
+  defaults: { _controller: ReclamationBundle:Reclamation:indexAdmin }
+
+
+
+
+
+alluser:
+  path:     /user/all
+  defaults: { _controller: AnnuaireBundle:User:all }
+find_user:
+  path:     /user/find/{username}
+  defaults: { _controller: AnnuaireBundle:User:find }
+create_user:
+  path:     /user/new
+  defaults: { _controller: AnnuaireBundle:User:new }
+modifier_user:
+  path:     /user/edit/{id}
+  defaults: { _controller: AnnuaireBundle:User:edit }
+
+all:
+  path:     /alljson
+  defaults: { _controller: AnnuaireBundle:API:all }
+
+find:
+  path:     /findjson/{id}
+  defaults: { _controller: AnnuaireBundle:API:find }
+
+find_pat:
+  path:     /findpjson/{id}
+  defaults: { _controller: AnnuaireBundle:API:findPat }
+
+
+new:
+  path:     /newjson
+  defaults: { _controller: AnnuaireBundle:API:new }
+
+
+all_user:
+  path:     /Userjson
+  defaults: { _controller: AnnuaireBundle:API:allUser }
+
+find_u:
+  path:     /findUjson/{id}
+  defaults: { _controller: AnnuaireBundle:API:findUser }
+
+
+new_reservation:
+  path:     /newResjson
+  defaults: { _controller: AnnuaireBundle:API:newRes }
+
+all_reservation:
+  path:     /Resjson
+  defaults: { _controller: AnnuaireBundle:API:allReservation }
+
+find_userres:
+  path:     /findURjson/{id}
+  defaults: { _controller: AnnuaireBundle:API:findUserRes }
+
+find_patres:
+  path:     /findPRjson/{id}
+  defaults: { _controller: AnnuaireBundle:API:findPatRes }
+
+nombre:
+  path:     /nombrejson/{id}
+  defaults: { _controller: AnnuaireBundle:API:nombre }
+
+removepat:
+  path:     /removepat/{id}
+  defaults: { _controller: AnnuaireBundle:API:removePat }
+

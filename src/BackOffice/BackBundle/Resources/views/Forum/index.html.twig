@@ -1,0 +1,140 @@
+{% extends 'Adminlayout.html.twig' %}
+{% block body %}
+    <style>
+        .cursor{
+            cursor: pointer;
+        }
+    </style>
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="{{path('guest_house_admin')}}"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+            <li class="active">Forum</li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Widgets</h1>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-red panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked app-window-with-content"><use xlink:href="#stroked-app-window-with-content"></use></svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">{{themes}}</div>
+                        <div class="text-muted">Théme(s)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-blue panel-widget ">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">{{subjects}}</div>
+                        <div class="text-muted">Sujet(s)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-orange panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked empty-message"><use xlink:href="#stroked-empty-message"></use></svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">{{comments}}</div>
+                        <div class="text-muted">Commentaire(s)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-md-6 col-lg-3">
+            <div class="panel panel-teal panel-widget">
+                <div class="row no-padding">
+                    <div class="col-sm-3 col-lg-5 widget-left">
+                        <svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg>
+                    </div>
+                    <div class="col-sm-9 col-lg-7 widget-right">
+                        <div class="large">{{users}}</div>
+                        <div class="text-muted">Utilsateur(s)</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="panel panel-default">
+                <div class="panel-heading"> Liste des Sujets</div>
+                <div class="panel-body">
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th>Titre</th>
+                                <th>Témes</th>
+                                <th>Utilisateur</th>
+                                <th>Date de Création</th>
+                                <th style="text-align: center">Statut</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for subject in subjectslist %}
+                                <tr>
+                                    <td><a target="_blank" href="{{path('subject_show', {'subject': subject.id})}}">{{ subject.title }}</a></td>
+                                    <td>{{ subject.theme }}</td>
+                                    <td>{{ subject.user }}</td>
+                                    <td>{{ subject.date|date('Y-m-d H:i:s') }}</td>
+                                    <td style="text-align: center">
+                                        <a id="{{ subject.id }}" class="cursor table-icon {% if subject.isdisabled %} state-subject false {% else %} state-subject true {% endif %}" title="{% if subject.isdisabled %} Activer le sujet {% else %} Fermer le sujet {% endif %}"></a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+
+                    <div>
+                        {% if (pagination.pages_count == 0) %}
+                            <center>
+                                <ul class="pagination">
+                                    <li class="active"><a href="{{ path(pagination.route, pagination.route_params|merge({'page': 1})) }}">{{ 1 }}</a></li>
+                                </ul>
+                            </center>
+                        {% else %}
+                            <center>
+                                <ul class="pagination">
+                                    {% if pagination.page>1 %}
+                                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': 1})) }}"> &laquo; </a></>
+                                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.page-1})) }}"> ← </a></li>
+                                        {% endif %}
+
+                                    {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.pages_count)) %}
+                                        <li {% if p == pagination.page %} class="active"{% endif %}><a href="{{ path(pagination.route, pagination.route_params|merge({'page': p})) }}">{{ p }}</a></li>
+                                        {% endfor %}
+
+                                    {% if pagination.page<pagination.pages_count %}
+                                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.page+1})) }}"> → </a></li>
+                                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.pages_count})) }}"> &raquo; </a></li>
+                                        {% endif %}
+                                </ul>
+                            </center>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+
+        </div><!--/.col-->
+
+    </div><!--/.row-->
+
+{% endblock %}

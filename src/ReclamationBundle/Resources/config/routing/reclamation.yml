@@ -1,0 +1,31 @@
+crudRec_index:
+    path:     /
+    defaults: { _controller: "ReclamationBundle:Reclamation:index" }
+    methods:  GET
+crudRec_indexAdmin:
+    path:     /indexAd
+    defaults: { _controller: "ReclamationBundle:Reclamation:indexAdmin" }
+    methods:  GET
+crudRec_show:
+    path:     /{id}/show
+    defaults: { _controller: "ReclamationBundle:Reclamation:show" }
+    methods:  GET
+
+crudRec_new:
+    path:     /new
+    defaults: { _controller: "ReclamationBundle:Reclamation:new" }
+    methods:  [GET, POST]
+
+crudRec_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "ReclamationBundle:Reclamation:edit" }
+    methods:  [GET, POST]
+
+crudRec_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "ReclamationBundle:Reclamation:delete" }
+    methods:  DELETE
+crudRec_bloquer:
+    path:     /{id}/bloque
+    defaults: { _controller: "ReclamationBundle:Reclamation:bloquer" }
+    methods:  [GET, POST]

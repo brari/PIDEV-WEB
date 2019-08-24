@@ -1,0 +1,134 @@
+produit_homepage:
+    path:     /
+    defaults: { _controller: ProduitBundle:Default:index }
+
+cmdprod_index:
+  path:     /index
+  defaults: { _controller: "ProduitBundle:Cmdprod:index" }
+  methods:  GET
+
+cmdprod_show:
+  path:     /{idcp}/showc
+  defaults: { _controller: "ProduitBundle:Cmdprod:show" }
+  methods:  GET
+
+cmdprod_new:
+  path:     /newc
+  defaults: { _controller: "ProduitBundle:Cmdprod:new" }
+  methods:  [GET, POST]
+
+cmdprod_edit:
+  path:     /{idcp}/editc
+  defaults: { _controller: "ProduitBundle:Cmdprod:edit" }
+  methods:  [GET, POST]
+
+cmdprod_delete:
+  path:     /{idcp}/deletec
+  defaults: { _controller: "ProduitBundle:Cmdprod:delete" }
+  methods:  DELETE
+
+prods_index:
+  path:     /ss
+  defaults: { _controller: "ProduitBundle:Prods:index" }
+  methods:  GET
+
+prods_show:
+  path:     /{idpro}/showp
+  defaults: { _controller: "ProduitBundle:Prods:show" }
+  methods:  GET
+
+prods_new:
+  path:     /newp/{idp}
+  defaults: { _controller: "ProduitBundle:Prods:new" }
+
+prods_edit:
+  path:     /{idpro}/editp
+  defaults: { _controller: "ProduitBundle:Prods:edit" }
+  methods:  [GET, POST]
+
+prods_delete:
+  path:     /{idpro}/deletep
+  defaults: { _controller: "ProduitBundle:Prods:delete" }
+  methods:  DELETE
+
+prods_Affiche:
+  path:     /affiche/{idp}
+  defaults: { _controller: "ProduitBundle:Prods:affiche" }
+
+prods_recherche:
+  path:     /rechercheProduit
+  defaults: { _controller: ProduitBundle:Prods:Recherche }
+
+prods_sugg:
+  path:     /suggestion/{detailspro}
+  defaults: { _controller: ProduitBundle:Prods:Suggestion }
+
+prods_suggest:
+  path:     /sugg
+  defaults: { _controller: ProduitBundle:Prods:Filtrage}
+
+ajouterPanier:
+  path:     /ajoutpanier/{idpro}
+  defaults: { _controller: ProduitBundle:Cmdprod:AjouterAuPanier}
+
+affichePanier:
+  path:     /afficherPanier
+  defaults: { _controller: ProduitBundle:Cmdprod:ListPanier}
+
+prods_trie:
+  path:     /trieProduit
+  defaults: { _controller: ProduitBundle:Prods:trier }
+
+DeletePanierUser:
+  path:     /DeletePanierUser/{idcp}/{idpro}
+  defaults: { _controller: ProduitBundle:Cmdprod:DeletePanierProduit }
+
+stat:
+  path:     /stat
+  defaults: { _controller: ProduitBundle:Default:index }
+
+
+
+create_prod:
+  path:     /prods/new
+  defaults: { _controller: ProduitBundle:Prods:newM }
+
+create_cmd:
+  path:     /cmd/new/{idpro}
+  defaults: { _controller: ProduitBundle:Cmdprod:newm }
+
+cmd:
+  path:     /cmd/all
+  defaults: { _controller: ProduitBundle:Cmdprod:allm }
+
+affiche:
+  path:     /prods/affiche
+  defaults: {_controller: ProduitBundle:Prods:allm }
+
+delete:
+  path:     /prods/delete/{idpro}
+  defaults: { _controller: ProduitBundle:Prods:deletem }
+
+edit_prod:
+  path:     /prods/edit
+  defaults: { _controller: ProduitBundle:Prods:Modifier }
+
+deletecmd:
+  path:     /cmd/delete/{idcp}/{idpro}
+  defaults: { _controller: ProduitBundle:Cmdprod:deletecmd }
+
+find:
+  path:     /prods/find/{id}
+  defaults: { _controller: ProduitBundle:Prods:find }
+
+modif:
+  path:     /prods/update/{idpro}/{nompro}/{prixpro}/{categoriepro}/{detailspro}/{nompat}/{stock}
+  defaults: { _controller: ProduitBundle:Prods:update }
+
+findet:
+  path:     /prods/finde/{etat}
+  defaults: { _controller: ProduitBundle:Prods:findEtatF }
+
+all:
+  path:     /prods/all
+  defaults: { _controller: ProduitBundle:Prods:allm }

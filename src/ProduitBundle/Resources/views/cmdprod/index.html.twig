@@ -1,0 +1,53 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cmdprods list</h1>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Idcp</th>
+
+                <th>Nompro</th>
+                <th>Prixpro</th>
+                <th>Categoriepro</th>
+                <th>Detailspro</th>
+                <th>Nompat</th>
+                <th>Image</th>
+
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for cmdprod in cmdprods %}
+            <tr>
+                <td><a href="{{ path('cmdprod_show', { 'idcp': cmdprod.idcp }) }}">{{ cmdprod.idcp }}</a></td>
+
+                <td>{{ cmdprod.nompro }}</td>
+                <td>{{ cmdprod.prixpro }}</td>
+                <td>{{ cmdprod.categoriepro }}</td>
+                <td>{{ cmdprod.detailspro }}</td>
+                <td>{{ cmdprod.nompat }}</td>
+                <td>{{ cmdprod.image }}</td>
+
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('cmdprod_show', { 'idcp': cmdprod.idcp }) }}">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('cmdprod_edit', { 'idcp': cmdprod.idcp }) }}">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cmdprod_new') }}">Create a new cmdprod</a>
+        </li>
+    </ul>
+{% endblock %}

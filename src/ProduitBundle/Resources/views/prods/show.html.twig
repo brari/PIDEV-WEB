@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        body {
+            color: salmon;
+        }
+        h1 {
+            color: crimson;
+        }
+        p {
+            color: cadetblue;
+        }
+    </style>
+
+    <h1>Prods</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th><span>        </span><p>       Idpro   :     </p> </th>
+                <td>{{ prods.idpro }}</td>
+            </tr>
+            <tr>
+                <th><span>        </span><p>        Nompro    :    </p> </th>
+                <td>{{ prods.nompro }}</td>
+            </tr>
+            <tr>
+                <th><p>        Prixpro    :    </p> </th>
+                <td>{{ prods.prixpro }} dt </td>
+            </tr>
+            <tr>
+                <th><p>        Categoriepro    :    </p> </th>
+                <td>{{      prods.categoriepro }}</td>
+            </tr>
+            <tr>
+                <th><p>        Detailspro     :   </p> </th>
+                <td>{{ prods.detailspro }}</td>
+            </tr>
+            <tr>
+                <th><p>        Nompat    :    </p> </th>
+                <td>{{ prods.nompat }}</td>
+            </tr>
+            <tr>
+                <th><p>        Image     :   </p> </th>
+                <td>{{ prods.getImage() }}</td>
+            </tr>
+
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('prods_Affiche',{'idp':prods.idpat.idp}) }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('prods_edit', { 'idpro': prods.idpro }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

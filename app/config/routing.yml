@@ -1,3 +1,38 @@
+recette:
+    resource: "@recetteBundle/Resources/config/routing.yml"
+    prefix:   /recette
+
+produit:
+    resource: "@ProduitBundle/Resources/config/routing.yml"
+    prefix:   /prod
+
+reclamation:
+    resource: "@ReclamationBundle/Resources/config/routing.yml"
+    prefix:   /rec
+fete:
+    resource: "@FeteBundle/Resources/config/routing.yml"
+    prefix:   /fete
+
+front_office_patisserie:
+    resource: "@FrontOfficePatisserieBundle/Resources/config/routing.yml"
+    prefix:   /pat
+
+front_office_event:
+    resource: "@FrontOfficeEventBundle/Resources/config/routing.yml"
+    prefix:   /evenmt
+
+back_office_back:
+    resource: "@BackOfficeBackBundle/Resources/config/routing.yml"
+    prefix:   /back
+
+front_office_forum:
+    resource: "@FrontOfficeForumBundle/Resources/config/routing.yml"
+    prefix:   /forum
+
+evenement:
+    resource: "@EvenementBundle/Resources/config/routing.yml"
+    prefix:   /event
+
 patisserie:
     resource: "@PatisserieBundle/Resources/config/routing.yml"
     prefix:   /annuaire
@@ -15,3 +50,4 @@ app:
     type: annotation
 fos_user:
     resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+

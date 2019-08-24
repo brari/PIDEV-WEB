@@ -5,6 +5,13 @@ imports:
 - { resource: "@AnnuaireBundle/Resources/config/services.yml" }
 - { resource: "@UserBundle/Resources/config/services.yml" }
 - { resource: "@PatisserieBundle/Resources/config/services.yml" }
+- { resource: "@EvenementBundle/Resources/config/services.yml" }
+- { resource: "@FrontOfficeForumBundle/Resources/config/services.yml" }
+- { resource: "@BackOfficeBackBundle/Resources/config/services.yml" }
+- { resource: "@FrontOfficeEventBundle/Resources/config/services.yml" }
+- { resource: "@FrontOfficePatisserieBundle/Resources/config/services.yml" }
+- { resource: "@ProduitBundle/Resources/config/services.yml" }
+- { resource: "@recetteBundle/Resources/config/services.yml" }
 
 
 # Put parameters here that don't need to change on each machine where the app is deployed
@@ -104,6 +111,11 @@ fos_user:
         email:
             template:   '@FOSUser/Resetting/email.txt.twig'
 
+services:
+    twig.extension.text:
+        class: Twig_Extensions_Extension_Text
+        tags:
+        - { name: twig.extension }
 #star rating
 star_rating: []
 
@@ -112,3 +124,18 @@ ivory_google_map:
     map:
         debug: "%kernel.debug%"
         api_key: "AIzaSyBdAHI_W5BHyjaD_i43-w4zSzUCrJYAIjo"
+<<<<<<< Updated upstream
+=======
+
+#pagination
+knp_paginator:
+  page_range: 5
+  default_options:
+    page_name: page
+    sort_field_name: sort
+    sort_direction_name: direction
+    distinct: true
+  template:
+    pagination: '@KnpPaginator/Pagination/twitter_bootstrap_v3_pagination.html.twig'
+    sortable: '@KnpPaginatorBundle/Pagination/sortable_link.html.twig'
+>>>>>>> Stashed changes

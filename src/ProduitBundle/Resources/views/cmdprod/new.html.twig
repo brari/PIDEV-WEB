@@ -1,0 +1,78 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cmdprod creation</h1>
+
+    <span id="typed" style="white-space:pre;"></span>
+    </div>
+    <div class="focus">
+        <div class="container">
+            <form class="form-horizontal" method="post" action="{{ path('cmdprod_new') }}">
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-2 control-label">Nom du Produit</label>
+
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control1" id="focusedinput" placeholder="le nom de votre produit" name="nompro" required>
+
+                    </div>
+
+                </div>
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-2 control-label">Prix</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control1" id="focusedinput" placeholder="prix" name="prixpro" required>
+
+                    </div>
+
+                </div>
+
+                <div class="form-group">
+                    <label for="focusedinput" class="col-sm-2 control-label">Categorie</label>
+                    <div class="col-sm-8">
+                        <input type="number" class="form-control1" id="focusedinput" placeholder="ex:sucre,sale" name="categoriepro" required>
+
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Details</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control1" id="focusedinput" placeholder="ex:velvet , chocolat" name="detailspro" required>
+
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="focusedinput" class="col-sm-2 control-label">Nom Patisserie</label>
+                        <div class="col-sm-8">
+                            <input type="number" class="form-control1" id="focusedinput" placeholder="Nom Pat" name="nompat" required>
+
+                        </div>
+                        <div class="form-group">
+                            <label for="focusedinput" class="col-sm-2 control-label">Image</label>
+                            <div class="col-sm-8">
+                                <input type="number" class="form-control1" id="focusedinput" placeholder="image Pat" name="image" required>
+
+                            </div>
+
+                </div>
+                <br>
+                <br>
+                <div  align="center">
+                    <div class="col-sm-8">
+                        <input type=submit class="button--nina" style="color: #0055cc " value="Ajouter">
+
+                    </div>
+
+                </div>
+                <br>
+                <br>
+            </form>
+
+            <div class="clearfix"> </div>
+        </div>
+    </div>
+
+    <ul>
+        <li>
+            <a href="{{ path('cmdprod_index') }}">Back to the list</a>
+        </li>
+    </ul>
+{% endblock %}

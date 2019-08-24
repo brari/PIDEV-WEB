@@ -1,0 +1,304 @@
+<html>
+    <head>
+        {%  block head %}
+            <meta charset="UTF-8"/>
+            <title>{% block title %}Espace Admin{% endblock %}</title>
+            {% block stylesheet %}
+                <link rel="stylesheet" href="{{ asset('Admin/css/style.css') }}"/>
+            {% endblock %}
+        {% endblock %}
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Le coin patissier - Dashboard</title>
+
+        <link href="{{ asset('Admin/css/bootstrap.min.css') }}" rel="stylesheet">
+        <link href="{{ asset('Admin/css/datepicker3.css') }}" rel="stylesheet">
+        <link href="{{ asset('Admin/css/styles.css') }}" rel="stylesheet">
+
+        <!--Icons-->
+        <script src="{{ asset('Admin/js/lumino.glyphs.js')}}"></script>
+
+        <!--[if lt IE 9]>
+        <script src="js/html5shiv.js"></script>
+        <script src="js/respond.min.js"></script>
+        <![endif]-->
+
+    </head>
+    <body>
+        <script src="{{ asset('Admin/js/jquery-1.11.1.min.js')}}"></script>
+        <script src="{{ asset('Admin/js/bootstrap.min.js')}}"></script>
+        <script src="{{ asset('Admin/js/chart.min.js')}}"></script>
+        <script src="{{ asset('Admin/js/chart-data.js')}}"></script>
+        <script src="{{ asset('Admin/js/easypiechart.js')}}"></script>
+        <script src="{{ asset('Admin/js/easypiechart-data.js')}}"></script>
+        <script src="http://code.highcharts.com/highcharts.js"></script>
+        <script src="http://code.highcharts.com/modules/exporting.js"></script>
+        <script src="{{ asset('Admin/js/bootstrap-datepicker.js')}}"></script>
+        <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+            <div class="container-fluid">
+                {% block content %}
+                    <div class="navbar-header">
+                        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#sidebar-collapse">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                            <span class="icon-bar"></span>
+                        </button>
+                        <a class="navbar-brand" href="#"><span>Le coin patissier</span> Admin</a>
+                        <ul class="user-menu">
+                            <li class="dropdown pull-right">
+                                <a href="#" class="dropdown-toggle" data-toggle="dropdown"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Admin <span class="caret"></span></a>
+                                <ul class="dropdown-menu" role="menu">
+                                    <li><a href="#"><svg class="glyph stroked male-user"><use xlink:href="#stroked-male-user"></use></svg> Profile</a></li>
+                                    <li><a href="#"><svg class="glyph stroked gear"><use xlink:href="#stroked-gear"></use></svg> Settings</a></li>
+                                    <li><a href="{{ path('fos_user_security_logout') }}"><svg class="glyph stroked cancel"><use xlink:href="#stroked-cancel"></use></svg> Logout</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </div>
+
+                </div><!-- /.container-fluid -->
+            </nav>
+
+            <div id="sidebar-collapse" class="col-sm-3 col-lg-2 sidebar">
+                <form role="search">
+                    <div class="form-group">
+                        <input type="text" class="form-control" placeholder="Search">
+                    </div>
+                </form>
+                <ul class="nav menu">
+                    <li {%if (app.request.attributes.get('_route') == 'guest_house_admin') %}class="active"{% endif %}><a href="{{path('guest_house_admin')}}"><svg class="glyph stroked dashboard-dial"><use xlink:href="#stroked-dashboard-dial"></use></svg> Dashboard</a></li>
+                    <li {%if (app.request.attributes.get('_route') == 'backend_forum_index') %}class="active"{% endif %}><a href="{{path('backend_forum_index')}}"><svg class="glyph stroked two messages"><use xlink:href="#stroked-two-messages"/></svg> Forum</a></li>
+                    <li {%if (app.request.attributes.get('_route') == 'widgets') %}class="active"{% endif %}><a href="{{path('widgets')}}"><svg class="glyph stroked calendar"><use xlink:href="#stroked-calendar"></use></svg> Widgets</a></li>
+                    <li {%if (app.request.attributes.get('_route') == 'charts') %}class="active"{% endif %}><a href="{{ path('charts') }}"><svg class="glyph stroked line-graph"><use xlink:href="#stroked-line-graph"></use></svg> Statistique Forum</a></li>
+                    <li {%if (app.request.attributes.get('_route') == 'tables') %}class="active"{% endif %}><a href="{{ path('tables') }}"><svg class="glyph stroked table"><use xlink:href="#stroked-table"></use></svg> Tables</a></li>
+                    <li {%if (app.request.attributes.get('_route') == 'forms') %}class="active"{% endif %}><a href="{{ path('forms') }}"><svg class="glyph stroked pencil"><use xlink:href="#stroked-pencil"></use></svg> Forms</a></li>
+                    <li {%if (app.request.attributes.get('_route') == 'panels') %}class="active"{% endif %}><a href="{{ path('panels') }}"><svg class="glyph stroked app-window"><use xlink:href="#stroked-app-window"></use></svg> Alerts &amp; Panels</a></li>
+                    <li {%if (app.request.attributes.get('_route') == 'icons') %}class="active"{% endif %}><a href="{{ path('icons') }}"><svg class="glyph stroked star"><use xlink:href="#stroked-star"></use></svg> Icons</a></li>
+                    <li class="parent ">
+                        <a href="#">
+                            <span data-toggle="collapse" href="#sub-item-1"><svg class="glyph stroked chevron-down"><use xlink:href="#stroked-chevron-down"></use></svg></span> Dropdown
+                        </a>
+                        <ul class="children collapse" id="sub-item-1">
+                            <li>
+                                <a class="" href="#">
+                                    <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 1
+                                </a>
+                            </li>
+                            <li>
+                                <a class="" href="#">
+                                    <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 2
+                                </a>
+                            </li>
+                            <li>
+                                <a class="" href="#">
+                                    <svg class="glyph stroked chevron-right"><use xlink:href="#stroked-chevron-right"></use></svg> Sub Item 3
+                                </a>
+                            </li>
+                        </ul>
+                    </li>
+                    <li role="presentation" class="divider"></li>
+                </ul>
+
+            </div><!--/.sidebar-->
+
+            <div class="col-sm-9 col-sm-offset-3 col-lg-10 col-lg-offset-2 main">
+            {% block body %}{% endblock %}
+        </div>	<!--/.main-->
+
+
+        <script>
+            window.onload = function () {
+                var chart2 = document.getElementById("bar-chart").getContext("2d");
+                window.myBar = new Chart(chart2).Bar(
+                        {
+                            labels:,
+                                    datasets: [
+                                        {
+                                            fillColor: "rgba(48, 164, 255, 0.2)",
+                                            strokeColor: "rgba(48, 164, 255, 0.8)",
+                                            highlightFill: "rgba(48, 164, 255, 0.75)",
+                                            highlightStroke: "rgba(48, 164, 255, 1)",
+                                            data: []
+                                        }
+                                    ]
+                        }, {
+                    responsive: true
+                });
+            };
+        </script>
+        <script>
+            var randomScalingFactor = function () {
+                return Math.round(Math.random() * 1000)
+            };
+
+            var lineChartData = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        label: "My First dataset",
+                        fillColor: "rgba(220,220,220,0.2)",
+                        strokeColor: "rgba(220,220,220,1)",
+                        pointColor: "rgba(220,220,220,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(220,220,220,1)",
+                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    },
+                    {
+                        label: "My Second dataset",
+                        fillColor: "rgba(48, 164, 255, 0.2)",
+                        strokeColor: "rgba(48, 164, 255, 1)",
+                        pointColor: "rgba(48, 164, 255, 1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(48, 164, 255, 1)",
+                        data: [randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    }
+                ]
+
+            }
+
+            var barChartData = {
+                labels: ["January", "February", "March", "April", "May", "June", "July"],
+                datasets: [
+                    {
+                        fillColor: "rgba(48, 164, 255, 0.2)",
+                        strokeColor: "rgba(48, 164, 255, 0.8)",
+                        highlightFill: "rgba(48, 164, 255, 0.75)",
+                        highlightStroke: "rgba(48, 164, 255, 1)",
+                        data: [400, randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor(), randomScalingFactor()]
+                    }
+                ]
+
+            }
+
+            var pieData = [
+                {
+                    value: 300,
+                    color: "#30a5ff",
+                    highlight: "#62b9fb",
+                    label: "Blue"
+                },
+                {
+                    value: 50,
+                    color: "#ffb53e",
+                    highlight: "#fac878",
+                    label: "Orange"
+                },
+                {
+                    value: 100,
+                    color: "#1ebfae",
+                    highlight: "#3cdfce",
+                    label: "Teal"
+                },
+                {
+                    value: 120,
+                    color: "#f9243f",
+                    highlight: "#f6495f",
+                    label: "Red"
+                }
+
+            ];
+
+            var doughnutData = [
+                {
+                    value: 300,
+                    color: "#30a5ff",
+                    highlight: "#62b9fb",
+                    label: "Blue"
+                },
+                {
+                    value: 50,
+                    color: "#ffb53e",
+                    highlight: "#fac878",
+                    label: "Orange"
+                },
+                {
+                    value: 100,
+                    color: "#1ebfae",
+                    highlight: "#3cdfce",
+                    label: "Teal"
+                },
+                {
+                    value: 120,
+                    color: "#f9243f",
+                    highlight: "#f6495f",
+                    label: "Red"
+                }
+
+            ];
+
+            window.onload = function () {
+                var chart1 = document.getElementById("line-chart").getContext("2d");
+                window.myLine = new Chart(chart1).Line(lineChartData, {
+                    responsive: true
+                });
+                var chart2 = document.getElementById("bar-chart").getContext("2d");
+                window.myBar = new Chart(chart2).Bar(
+                        {
+                            labels: [],
+                            datasets: [
+                                {
+                                    fillColor: "rgba(48, 164, 255, 0.2)",
+                                    strokeColor: "rgba(48, 164, 255, 0.8)",
+                                    highlightFill: "rgba(48, 164, 255, 0.75)",
+                                    highlightStroke: "rgba(48, 164, 255, 1)",
+                                    data: []
+                                }
+                            ]
+                        }, {
+                    responsive: true
+                });
+                var chart3 = document.getElementById("doughnut-chart").getContext("2d");
+                window.myDoughnut = new Chart(chart3).Doughnut(doughnutData, {responsive: true
+                });
+                var chart4 = document.getElementById("pie-chart").getContext("2d");
+                window.myPie = new Chart(chart4).Pie(pieData, {responsive: true
+                });
+
+            };
+        </script>
+        <script type="text/javascript">
+            $('.state-subject').click(function () {
+                var id = $(this).attr('id');
+                $.ajax({
+                    //            url: Routing.generate('subject_change_status', {id: id}),
+                    url: '/kk/PI/AnnuaireWeb/web/app_dev.php/back/forum/changeStatusBlock/' + id,
+                    type: 'POST',
+                    dataType: 'json',
+                    success: function (output_val) {
+                        if (output_val == '1') {
+                            $('#' + id).attr('class', 'cursor table-icon false');
+                            $('#' + id).attr('title', 'Fermer le sujet');
+                        } else if (output_val == '0') {
+                            $('#' + id).attr('class', 'cursor table-icon true');
+                            $('#' + id).attr('title', 'Activer le sujet');
+                        }
+                    }
+                });
+            });
+        </script>
+        <script>
+            $('#calendar').datepicker({
+            });
+
+            !function ($) {
+                $(document).on("click", "ul.nav li.parent > a > span.icon", function () {
+                    $(this).find('em:first').toggleClass("glyphicon-minus");
+                });
+                $(".sidebar span.icon").find('em:first').addClass("glyphicon-plus");
+            }(window.jQuery);
+
+            $(window).on('resize', function () {
+                if ($(window).width() > 768)
+                    $('#sidebar-collapse').collapse('show')
+            })
+            $(window).on('resize', function () {
+                if ($(window).width() <= 767)
+                    $('#sidebar-collapse').collapse('hide')
+            })
+        </script>
+    {% endblock %}
+</body>
+</html>

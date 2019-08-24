@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="wthree-form"><h1 style="color: #9e1847">creation de la Reclamation</h1>
+
+        {{ form_start(form) }}
+        {{ form_widget(form) }}
+        <input type="submit" value="Create" />
+        {{ form_end(form) }}
+    </div>
+    </br>
+    </br>
+    <center><b><a href="{{ path('crudRec_index') }}">Retour à la liste</a></b></center>
+
+{% endblock %}

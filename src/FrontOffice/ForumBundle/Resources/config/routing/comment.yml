@@ -1,0 +1,7 @@
+forum_comment_edit:
+    path:     /{comment}/edit
+    defaults: { _controller: "FrontOfficeForumBundle:Comment:update" }
+    
+forum_comment_delete:
+    path:     /{comment}/delete
+    defaults: { _controller: "FrontOfficeForumBundle:Comment:delete" }

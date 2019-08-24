@@ -1,0 +1,33 @@
+{% extends '@Annuaire/patissier.html.twig' %}
+{% block body %}
+
+<center><p><i><h1>   la liste  </h1></i></p>
+    <p ><i> <h1>♥ des participations ♥ </h1> </i></p></center>
+
+
+<div class="focus">
+    <div class="container">
+
+        <table  class="table table-hover">
+            <thead>
+            <tr>
+                <td bgcolor="#dcdcdc" style="color: white ;font-size: larger" align="center" > Nom Evenement</td>
+                <td bgcolor="#dcdcdc" style="color: white ;font-size: larger" align="center" > Nbre Participants</td>
+
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for even in evenements %}
+            <tr>
+                <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{  even.nomE|raw }}</td>
+                <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{even.interesses}}</td>
+
+            </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

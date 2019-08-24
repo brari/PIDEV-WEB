@@ -11,6 +11,7 @@
             <br/>
         <a href="{{ path('reservation_afficher') }}">Les reservations dans vos patisseries</a>
         <br/>
+
     </div>
 
     <div class="pat">
@@ -20,8 +21,12 @@
                 <h2><a href="{{ path('patisserie_detail',{'id':patisserie.idp}) }}">{{patisserie.nom}}</a></h2>
                 {% if patisserie.getUrl==null %}
                     <img src="{{ asset('Images/default.jpg') }}" width="340" height="243" alt="Image">
+                    <a href="{{ path('prods_new',{'idp':patisserie.idp}) }}">Ajouter Des Produits A votre Patisserie</a>
+                    <br/>
                 {% else %}
                     <img src="{{ asset('Images/' ~ patisserie.url) }}" width="340" height="243" alt="Image">
+                    <a href="{{ path('prods_new',{'idp':patisserie.idp}) }}">Ajouter Des Produits A votre Patisserie</a>
+                    <br/>
                 {% endif %}
 
             </li>

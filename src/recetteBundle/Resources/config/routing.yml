@@ -1,0 +1,116 @@
+recette_homepage:
+    path:     /
+    defaults: { _controller: recetteBundle:Default:index }
+
+recette_index:
+    path:     /re
+    defaults: { _controller: recetteBundle:Recette:index }
+    methods:  GET
+
+recette_add:
+    path:     /add
+    defaults: { _controller: recetteBundle:Recette:add }
+    methods:  GET
+
+recette_show:
+    path:     /{id}/showr
+    defaults: { _controller: recetteBundle:Recette:show }
+    methods:  GET
+
+recette_new:
+    path:     /newr
+    defaults: { _controller: recetteBundle:Recette:new }
+    methods:  [GET, POST]
+
+recette_edit:
+    path:     /edit
+    defaults: { _controller: recetteBundle:Recette:edit }
+    methods:  [GET, POST]
+
+recette_detail:
+    path:     /detail
+    defaults: { _controller: recetteBundle:Recette:detail }
+    methods:  [GET, POST]
+
+recette_delete:
+    path:     /delete
+    defaults: { _controller: recetteBundle:Recette:delete }
+    methods:  [GET, POST]
+
+annuaire_homepage:
+    path:     /
+    defaults: { _controller: AnnuaireBundle:Default:index }
+
+interface_principal:
+    path:     /interfaceAccueil
+    defaults: { _controller: AnnuaireBundle:Navigation:home }
+
+interface_patisseries:
+    path:     /interfacePat
+    defaults: { _controller: AnnuaireBundle:Navigation:patisseries }
+
+interface_evenements:
+    path:     /interfaceEv
+    defaults: { _controller: AnnuaireBundle:Navigation:evenement }
+
+interface_forum:
+    path:     /interfaceForum
+    defaults: { _controller: AnnuaireBundle:Navigation:forum }
+
+
+recetteclient_index:
+    path:     /rec
+    defaults: { _controller: "recetteBundle:RecetteClient:index" }
+    methods:  GET
+
+recetteclient_show:
+    path:     /showrc
+    defaults: { _controller: "recetteBundle:RecetteClient:show" }
+    methods:  GET
+
+recetteclient_new:
+    path:     /newrc
+    defaults: { _controller: "recetteBundle:RecetteClient:new" }
+    methods:  [GET, POST]
+
+
+recetterecetteclient_edit:
+    path:     /{id}/editrc
+    defaults: { _controller: "recetteBundle:RecetteClient:edit" }
+    methods:  [GET, POST]
+
+recetteclient_delete:
+    path:     /{id}/deleterc
+    defaults: { _controller: "recetteBundle:RecetteClient:delete"}
+    methods:  DELETE
+
+panier_add:
+    path:     /panierc
+    defaults: { _controller: "recetteBundle:RecetteClient:show" }
+    methods:  [GET, POST]
+
+commende:
+    path:     /commendec
+    defaults: { _controller: "recetteBundle:RecetteClient:commande" }
+
+addOrder:
+    path:     /addOrderc
+    defaults: { _controller: "recetteBundle:RecetteClient:addOrder" }
+
+pay:
+    path:     /payc
+    defaults: { _controller: "recetteBundle:RecetteClient:pay" }
+paylast:
+    path:     /paylastc
+    defaults: { _controller: "recetteBundle:RecetteClient:paylast" }
+
+
+recette_json_all:
+    path:     /allrecette
+    defaults: { _controller: recetteBundle:Default:allRecette }
+    methods:  GET
+
+
+affich:
+    path:     /MobileAffichageRecette
+    defaults: { _controller: recetteBundle:Default:AffiallRecette }

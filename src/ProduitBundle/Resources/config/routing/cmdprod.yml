@@ -1,0 +1,24 @@
+cmdprod_index:
+    path:     /
+    defaults: { _controller: "ProduitBundle:Cmdprod:index" }
+    methods:  GET
+
+cmdprod_show:
+    path:     /{idcp}/show
+    defaults: { _controller: "ProduitBundle:Cmdprod:show" }
+    methods:  GET
+
+cmdprod_new:
+    path:     /new
+    defaults: { _controller: "ProduitBundle:Cmdprod:new" }
+    methods:  [GET, POST]
+
+cmdprod_edit:
+    path:     /{idcp}/edit
+    defaults: { _controller: "ProduitBundle:Cmdprod:edit" }
+    methods:  [GET, POST]
+
+cmdprod_delete:
+    path:     /{idcp}/delete
+    defaults: { _controller: "ProduitBundle:Cmdprod:delete" }
+    methods:  DELETE

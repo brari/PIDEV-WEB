@@ -1,0 +1,10 @@
+backend_forum_index:
+    path:     /{page}
+    defaults: { _controller: BackOfficeBackBundle:Forum:index, page: 1 }
+    requirements:
+        page: \d+
+        
+subject_change_status_block:
+    path:  /changeStatusBlock/{id}
+    defaults: { _controller: "BackOfficeBackBundle:Forum:changeStatusBlock" }
+    requirements: { _method: post|get }

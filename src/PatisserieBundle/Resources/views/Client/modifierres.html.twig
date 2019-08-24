@@ -1,0 +1,21 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <ol>
+    <li>Modifier la Reservation</li>
+    <div>
+    {{ form_start(edit_form) }}
+        {{ form_widget(edit_form) }}
+        <input type="submit" value="Modifier" onclick="return confirm('Enregistrer les modifications?')"/>
+    {{ form_end(edit_form) }}
+    </div>
+        <li>Reservation edit</li>
+        <div>
+        {{ form_start(delete_form) }}
+                <input type="submit" value="Supprimer" onclick="return confirm('Etes vous sur de vouloir supprimer la reservation?')">
+            {{ form_end(delete_form) }}
+        </div>
+    </ol>
+    <br/>
+    <a href="{{ path('reservation_index') }}">Retour à la liste</a>
+{% endblock %}

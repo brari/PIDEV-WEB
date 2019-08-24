@@ -63,7 +63,7 @@ class PatisserieController extends Controller
             //
             if($patisserie->getUrl()!==null) {
                 //initialize the uploader
-                $uploader = new FileUploader('C:\wamp64\www\AnnuaireWeb\web\Images');
+                $uploader = new FileUploader('Images');
                 // $file stores the uploaded file
                 $file = $patisserie->getUrl();
                 $fileName = $uploader->upload($file);
@@ -75,6 +75,10 @@ class PatisserieController extends Controller
             $patisserie->setPlace($nb);
 
 
+<<<<<<< Updated upstream
+=======
+
+>>>>>>> Stashed changes
             $em->persist($patisserie);
             $em->flush();
 
@@ -106,7 +110,11 @@ class PatisserieController extends Controller
         );
         $map->getOverlayManager()->addMarker($marker);
         $map->setMapOption('width',500); $map->setMapOption('heigth',500);
+<<<<<<< Updated upstream
         $map->setMapOption('mapTypeId', MapTypeId::HYBRID);
+=======
+        //$map->setMapOption('mapTypeId', MapTypeId::HYBRID);
+>>>>>>> Stashed changes
 
         return $this->render('@Patisserie/Patissier/detail.html.twig',array('patisserie'=>$patisserie,'map'=>$map));
     }

@@ -1,0 +1,105 @@
+<style>
+    .notif{
+        margin-right: 50px;
+        padding: 7px;
+        color: #fff;
+        background-color: #f00;
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+<div class="block-forum">
+    <a href="#top" id="top-button">
+        <i class="icon-angle-up"></i>
+    </a>
+    <div class="row">
+        <div class="large-6 column lpad top-msg breadcrumb">
+            <span id="breadcrumb">
+                <a href="{{ path('Acceuil_Forum') }}"><i class="icon-home"></i></a>
+                <a>Mes Postes</a>
+            </span>
+        </div>
+        <div class="large-6 small-12 column lpad top-msg ar breadcrumb">
+            <a href="{{path('notif_Forum')}}"><span class="notif">{{nbnotif}}</span></a>
+            Bienvenue,
+            <a href="#" title="Dernière connexion : {{ app.user.lastLogin|date('Y-m-d H:i:s')}}" class="underline">{{ app.user.nom }} {{ app.user.prenom }}</a>
+        </div>
+    </div>
+    <nav class="menu">
+        <a href="{{ path('Acceuil_Forum') }}">Forum</a>
+        <a href="{{ path('subject_new') }}">Nouveau Poste</a>
+        <a href="{{ path('my_subjects') }}">Mes Postes</a>
+    </nav>
+    <br>
+    <table class="table table-hover">
+        <thead>
+            <tr>
+                <th>Titre</th>
+                <th>Core</th>
+                <th>Date de Création</th>
+                <th style="text-align: center">Statut</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for subject in subjects %}
+                <tr>
+                    <td><a target="_blank" href="{{path('subject_show', {'subject': subject.id})}}">{{ subject.title }}</a></td>
+                    <td>{{ subject.core|truncate(40) }}</td>
+                    <td>{{ subject.date|date('Y-m-d H:i:s') }}</td>
+                    <td style="text-align: center">
+                        <a id="{{ subject.id }}" class="table-icon {% if subject.isdisabled %} state-subject false {% else %} state-subject true {% endif %}" title="{% if subject.isdisabled %} Activer le sujet {% else %} Fermer le sujet {% endif %}"></a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <div>
+        {% if (pagination.pages_count == 0) %}
+            <center>
+                <ul class="pagination">
+                    <li class="active"><a href="{{ path(pagination.route, pagination.route_params|merge({'page': 1})) }}">{{ 1 }}</a></li>
+                </ul>
+            </center>
+        {% else %}
+            <center>
+                <ul class="pagination">
+                    {% if pagination.page>1 %}
+                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': 1})) }}"> &laquo; </a></>
+                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.page-1})) }}"> ← </a></li>
+                        {% endif %}
+
+                    {% for p in range(max(pagination.page-4, 1), min(pagination.page+4, pagination.pages_count)) %}
+                        <li {% if p == pagination.page %} class="active"{% endif %}><a href="{{ path(pagination.route, pagination.route_params|merge({'page': p})) }}">{{ p }}</a></li>
+                        {% endfor %}
+
+                    {% if pagination.page<pagination.pages_count %}
+                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.page+1})) }}"> → </a></li>
+                        <li><a href="{{ path(pagination.route, pagination.route_params|merge({'page': pagination.pages_count})) }}"> &raquo; </a></li>
+                        {% endif %}
+                </ul>
+            </center>
+        {% endif %}
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    $('.state-subject').click(function () {
+        var id = $(this).attr('id');
+        $.ajax({
+//            url: Routing.generate('subject_change_status', {id: id}),
+            url: '/kk/PI/AnnuaireWeb/web/app_dev.php/forum/sujet/changeStatus/' + id ,
+            type: 'POST',
+            dataType: 'json',
+            success: function (output_val) {
+                if (output_val == '1') {
+                    $('#' + id).attr('class', 'table-icon false');
+                    $('#' + id).attr('title', 'Fermer le sujet');
+                } else if (output_val == '0') {
+                    $('#' + id).attr('class', 'table-icon true');
+                    $('#' + id).attr('title', 'Activer le sujet');
+                }
+            }
+        });
+    });
+</script>

@@ -26,7 +26,11 @@ class PatisserieType extends AbstractType
             ->add('mail',null,array('constraints'=>array(new Email())))
             ->add('url',FileType::class, array('label'=>'Photo','required'=>false,))
             ->add('reservation',CheckboxType::class,array('label'=>'Permetez vous des reservations?',"value"=>1,
+<<<<<<< Updated upstream
                 "required"=>false,'attr'=>array('class'=>"res")))
+=======
+                "required"=>false))
+>>>>>>> Stashed changes
         ;
     }/**
      * {@inheritdoc}

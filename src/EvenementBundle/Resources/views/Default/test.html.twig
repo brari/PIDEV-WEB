@@ -1,0 +1,52 @@
+{% extends 'base.html.twig' %}
+{% block body %} </br>
+
+    <div class="focus">
+    <div class="container">
+        <br>
+        <br>
+        <br>
+        <br>
+        <table  class="table table-hover">
+            <thead>
+            <tr>
+                <td bgcolor="#dcdcdc" style="color: white ;font-size: larger" align="center" > Id</td>
+                <td bgcolor="#dcdcdc" style="color: white ;font-size: larger" align="center" > Nom</td>
+                <td bgcolor="#dcdcdc" style="color: white;font-size:larger" align="center"> Description</td>
+                <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Adresse</td>
+                <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Type</td>
+                <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Date</td>
+                <td bgcolor="#dcdcdc" style="color: white;font-size: larger" align="center"> Image</td>
+                <td></td>
+                <td></td>
+
+
+
+            </tr>
+            </thead>
+
+            <tbody>
+            {% for even in evenements %}
+                <tr>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{  even.idE }}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{  even.nomE }}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.descriptionE}}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.adresseE }}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.typeE}}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.dateE|date('d-M-Y')}}</td>
+                    <td bgcolor="ffe4c4" style="font-size: large ;color:black" align="center"> {{ even.imageE}}</td>
+                    <td bgcolor="white" style="font-size: large ;color:-webkit-focus-ring-color" align="center"> <a href="{{ path('evenement_supprimer',{'idE':even.idE}) }}"> <img src="{{ asset('Evenement/image/delete.png') }}"  style="width: 35px;height: 35px"/></a> </td>
+                    <td bgcolor="white" style="font-size: large ;color:-webkit-focus-ring-color" align="center"> <a href="{{ path('evenement_modifier',{'idE':even.idE}) }}"> <img src="{{ asset('Evenement/image/update.png') }}"  style="width: 35px;height: 35px"/></a> </td>
+
+
+                </tr>
+
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+
+
+
+{% endblock %}

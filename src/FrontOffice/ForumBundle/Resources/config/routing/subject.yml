@@ -1,0 +1,44 @@
+subject_show:
+    path:     /{subject}/show
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:view" }
+    
+my_subjects:
+    path:     /my_subjects/{page}
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:mysubjects", page: 1 }
+    requirements:
+        page: \d+
+
+subject_change_status:
+    path:  /changeStatus/{id}
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:changeStatus" }
+    requirements: { _method: post|get }
+
+subject_active:
+    path:     /{subject}/active
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:active" }
+    
+subject_desactive:
+    path:     /{subject}/desactive
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:desactive" }
+
+subject_new:
+    path:     /new
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:new" }
+
+subject_edit:
+    path:     /{id}/edit
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:edit" }
+
+subject_update:
+    path:     /{id}/update
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:update" }
+    methods:  [POST, PUT]
+
+subject_delete:
+    path:     /{id}/delete
+    defaults: { _controller: "FrontOfficeForumBundle:Subject:delete" }
+    methods:  [POST, DELETE]
+
+app_forum_add_comment:
+    path:    /{subject}/addComment
+    defaults: { _controller: FrontOfficeForumBundle:Subject:addComment }

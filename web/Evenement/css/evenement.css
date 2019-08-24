@@ -1,0 +1,20 @@
+.recherche form{
+    border-radius: 60px;
+}
+.recherche form input#search {
+    background: #A9A9A9;
+    font-style:italic;
+    height: 25px;
+    line-height: 25px;
+    margin-left:0;
+    padding: 0;
+    width: 300px;
+}
+.recherche form input#searchbtn {
+    background: url(../image/im.png);
+    border: 0;
+    margin-right:0;
+    height: 25px;
+    width: 25px;
+    border-radius: 20px;
+}

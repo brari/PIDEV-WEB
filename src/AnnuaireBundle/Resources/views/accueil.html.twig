@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8" />
+    <title>{% block title %}Coin Patissier{% endblock %}</title>
+    {% block stylesheets %}
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta name="keywords" content="Blue Water Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template,
+Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
+
+        <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
+        <link href="{{ asset('Patisserie/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
+        <link href="{{ asset('Patisserie/css/style.css') }}" rel='stylesheet' type='text/css' />
+        <link href="{{ asset('Patisserie/css/patisserie.css') }}" rel='stylesheet' type='text/css' />
+        {#rating#}
+        <link rel="stylesheet" type="text/css" href="{{ asset('bundles/starrating/css/rating.css') }}" />
+        <script src="{{ asset('Patisserie/js/jquery-3.3.1.min.js') }}"></script>
+        <script src="{{ asset('bundles/starrating/js/rating.js') }}"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.css">
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/rateYo/2.3.2/jquery.rateyo.min.js"></script>
+        {#rating#}
+
+        <script src="{{ asset('Patisserie/js/jquery-1.11.0.min.js') }}"></script>
+        <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
+        <!---- start-smoth-scrolling---->
+        <script type="text/javascript" src="{{ asset('Patisserie/js/move-top.js') }}"></script>
+        <script type="text/javascript">
+            jQuery(document).ready(function($) {
+                $(".scroll").click(function(event){
+                    event.preventDefault();
+                    $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                });
+            });
+        </script>
+        <!--start-smoth-scrolling-->
+        <script src="{{ asset('Patisserie/https://code.jquery.com/jquery-1.12.4.js') }}"></script>
+        <script src="{{ asset('Patisserie/https://code.jquery.com/ui/1.12.1/jquery-ui.js') }}"></script>
+        <script>
+            $( function() {
+                $( "#datepicker-start" ).datepicker();
+                $( "#datepicker-end" ).datepicker();
+            } );
+        </script>
+
+
+    {% endblock %}
+
+</head>
+
+<body>
+
+{% block header %}
+
+    <!--start-banner-->
+    <div class="banner" id="home">
+        {#
+        <div class="nav navbar-nav  connexion">
+            {% if is_granted("IS_AUTHENTICATED_REMEMBERED") %}
+                {{ 'layout.logged_in_as'|trans({'%username%': app.user.username}, 'FOSUserBundle') }} |
+                <a href="{{ path('fos_user_security_logout') }}">
+                    {{ 'layout.logout'|trans({}, 'FOSUserBundle') }}
+                </a>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+        </div>
+        #}
+
+        <ul class="nav navbar-nav  navbar-right connexion">
+
+            <!-- User -->
+            {% if (app.user) %}
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                        {% if (app.user.photo==null) %}
+                            <img src="{{ asset('Images/index.png')}}"  class="img-circle" width="60" height="60"/> {{ app.user.username }}
+                        {% else %}
+                            <img src="{{ asset('Images/' ~ app.user.photo)}}"  class="img-circle" width="60" height="60"/> {{ app.user.username }}
+                        {% endif %}
+                    </a>
+
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ path('fos_user_profile_show') }}">Mon profile</a></li>
+                        <li><a href="{{ path('fos_user_security_logout') }}">Logout</a></li>
+                    </ul>
+                </li>
+            {% else %}
+                <a href="{{ path('fos_user_security_login') }}">{{ 'layout.login'|trans({}, 'FOSUserBundle') }}</a>
+            {% endif %}
+
+        </ul>
+
+        <div class="container">
+            <div class="header">
+                <div class="menu">
+                    {#<a class="toggleMenu" href="#"><img src="{{ asset('Patisserie/images/menu-icon.png') }}" alt="icone-menu" /> </a>#}
+                    <div class="banner-bottom">
+                        {#<a href="#"><img src="{{ asset('Patisserie/images/logo.png') }}" alt=""></a>#}
+                        <h1>L<span>e</span> C<span>o</span>in <span>P</span>a<span>ti</span>ss<span>i</span>er</h1>
+                    </div>
+                    <ul class="nav navliste" id="nav">
+                        <li class="active"><a href="{{ path('interface_principal') }}" class="active">Home</a></li>
+                        <a href="#">Forum</a>
+                        <a href="#">Evenement</a>
+                        <a href="#">Organisation des fêtes</a>
+                        <a href="#">Reclamation</a>
+                        {#<li><a href="#">Mon Compte</a></li> #}
+                    </ul>
+                    <!----start-top-nav-script---->
+                    <script type="text/javascript" src="{{ asset('Patisserie/js/responsive-nav.js') }}"></script>
+                    <script type="text/javascript">
+                        jQuery(document).ready(function($) {
+                            $(".scroll").click(function(event){
+                                event.preventDefault();
+                                $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                            });
+                        });
+                    </script>
+                    <!----//End-top-nav-script---->
+                </div>
+                <div class="clearfix"> </div>
+            </div>
+
+
+            <!--/start-text-slider-->
+
+            <!--//text-slider-->
+        </div>
+    </div>
+{% endblock %}
+
+{% block body %}
+
+    <style>
+        #zoom:hover {
+            -ms-transform: scale(0.7); /* IE 9 */
+            -webkit-transform: scale(0.7); /* Safari 3-8 */
+            transform: scale(0.7);
+        }
+
+        #zoom:hover p{
+            display: table-row;
+        }
+    </style>
+
+    <h1 class="animation"><center> ♡ Les Patisseries de l'annuaire ♡ </center></h1>
+
+    <p> Ceci est un affichage standard de notre annuaire. Afin de pouvoir bénéficier de tous les avantages de notre site nous vous
+        invitons à vous authentifier</p>
+    <div class="pat">
+        <ul>
+            {% for patisserie in patisseries %}
+                <li>
+                    <h2>{{patisserie.nom}}</a></h2>
+                    {% if patisserie.getUrl==null %}
+                        <img id="zoom" src="{{ asset('Images/default.jpg') }}" width="340" height="243" alt="Image">
+                    {% else %}
+                        <img id="zoom" src="{{ asset('Images/' ~ patisserie.url) }}" width="340" height="243" alt="Image">
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+
+    </div>
+
+{% endblock %}
+{% block footer %}
+    <div class="footer">
+        <div class="container">
+            <div class="footer-main">
+                <div class="col-md-5 footer-left">
+                    <h4>Follow Us</h4>
+                    <ul>
+                        <li><a href="#"><span class="twt"> </span></a></li>
+                        <li><a href="#"><span class="fb"> </span></a></li>
+                        <li><a href="#"><span class="p"> </span></a></li>
+                        <li><a href="#"><span class="yt"> </span></a></li>
+                        <li><a href="#"><span class="in"> </span></a></li>
+                    </ul>
+                    <h4>Address</h4>
+                    <h5>Tunis Ariana Pole Techlonogique.</h5>
+                    <p>Mail Us On <a href="mailto:info@example.com"> DevCrew@gmail.com</a></p>
+                    <p>Call Us On  +71 100 200</p>
+                </div>
+
+                <div class="clearfix"> </div>
+            </div>
+            <div class="footer-text">
+                <p>DESIGN BY <a href="http://DevWay.com/"> DevCrew Team</a></p>
+            </div>
+        </div>
+        <a href="#home" id="toTop" class="scroll" style="display: block;"> <span id="toTopHover" style="opacity: 1;"> </span></a>
+    </div>
+
+{% endblock %}
+{% block javascripts %}{% endblock %}
+</body>
+</html>

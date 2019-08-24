@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+    <center><h1 style="color: #a94442">la liste des fetes </h1></center>
+
+    <table class="table table-bordered fixed-table-toolbar wthree-form" >
+        <thead>
+        <tr>
+            <th style="color: #e9ecef;">Idf</th>
+            <th style="color: #e9ecef;">Nomf</th>
+            <th style="color: #e9ecef;">Descriptionf</th>
+            <th style="color: #e9ecef;">Adressef</th>
+            <th style="color: #e9ecef;">Datef</th>
+            <th style="color: #e9ecef;">Iduser</th>
+            <th style="color: #e9ecef;">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        {% for fete in fetes %}
+            <tr style="color: #e9ecef">
+                <td><a style="color: #e9ecef" href="{{ path('crud_show', { 'idf': fete.idf }) }}">{{ fete.idf }}</a></td>
+                <td>{{ fete.nomF }}</td>
+                <td>{{ fete.descriptionF }}</td>
+                <td>{{ fete.adresseF }}</td>
+                <td>{% if fete.dateF %}{{ fete.dateF|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ fete.iduser }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('crud_show', { 'idf': fete.idf }) }}">Afficher</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('crud_edit', { 'idf': fete.idf }) }}">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+
+    <center><b><a href="{{ path('crud_new') }}">Créer une nouvelle fete</a></b></center>
+
+{% endblock %}

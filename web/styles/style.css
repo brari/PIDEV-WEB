@@ -1,0 +1,26 @@
+a.bouton5 {
+    background-color: transparent;
+    color:#D19275!important;
+    border-width: 1px;
+    border-style: solid;
+    border-color: #D19275;
+    font-weight: bold;
+    padding: 10px 20px;
+    width: 200px;
+    border-image: initial;
+    -webkit-border-radius: 11px;
+    -moz-border-radius: 11px;
+    border-radius: 11px;
+
+
+}
+a.bouton5:hover {
+    background-color:#D2B48C;
+    color: #F5FFFA;
+    border-width: 3px;
+    border-style: solid;
+    font-weight: bold;
+    border-image: initial;
+
+
+}

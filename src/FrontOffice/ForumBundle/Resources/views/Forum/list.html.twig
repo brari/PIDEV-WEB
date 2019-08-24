@@ -1,0 +1,21 @@
+{% extends '::base.html.twig' %}
+<h1>Liste des modeles </h1>
+ <table border="1">
+     <tr>
+         <th>title</th>
+         <th>libelle</th>
+         <th>pays</th>
+         <th>Suppression</th>
+         <th>Mise à jour</th>
+     </tr>
+     {% for modele in modeles %}
+     <tr>
+         <td>{{ modele.id }}</td>
+         <td>{{ modele.libelle }}</td>
+         <td>{{ modele.pays }}</td>
+         <td><a href="{{ path('Delete_Modele',{'id':modele.id})}}">Supprimer</a></td>
+         <td><a href="{{ path('Update_Modele',{'id':modele.id})}}">mise à jour</a></td>
+     </tr>
+     {% endfor %}
+ </table>
+ <a href="{{ path('Recherche_Modele')}}">Effectuer une recherche</a>

@@ -1,0 +1,40 @@
+{% extends '@Annuaire/patissier.html.twig' %}
+
+{% block body %}
+    <h1>Reservations list</h1>
+
+    <table border="3">
+        <thead>
+            <tr>
+                <th>Nom Client</th>
+                <th>Contact</th>
+                <th>Nom patisserie</th>
+                <th>Places</th>
+                <th>Date</th>
+                <th>Heure</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for reservation in reservations %}
+            <tr>
+                <td><a href="{{ path('reservation_show', { 'id': reservation.id }) }}">{{ reservation.iduser.nom }}</a></td>
+                <td>
+                    <ul>
+                        <li>
+                            {{ reservation.iduser.email }}
+                        </li>
+                        <li>
+                            {{ reservation.iduser.telephone }}
+                        </li>
+                    </ul>
+                </td>
+                <td>{{ reservation.idpat.nom }}</td>
+                <td>{{ reservation.places }}</td>
+                <td>{% if reservation.date %}{{ reservation.date|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if reservation.heure %}{{ reservation.heure|date('H:i:s') }}{% endif %}</td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+{% endblock %}

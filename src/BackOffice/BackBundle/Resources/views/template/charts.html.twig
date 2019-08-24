@@ -1,0 +1,197 @@
+
+{% extends 'Adminlayout.html.twig' %}
+{% block body %}
+    <div class="row">
+        <ol class="breadcrumb">
+            <li><a href="#"><svg class="glyph stroked home"><use xlink:href="#stroked-home"></use></svg></a></li>
+            <li class="active">Statistique</li>
+        </ol>
+    </div><!--/.row-->
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">Statistique</h1>
+
+        </div>
+    </div><!--/.row-->
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <script>
+                    $(function () {
+                        var d = new Date();
+                        var n = d.getFullYear();
+                        $.ajax({
+//                            url: Routing.generate('getStatComment'),
+                            url: '/kk/PI/AnnuaireWeb/web/app_dev.php/back/getstatcomment',
+                            type: 'POST',
+                            dataType: "json",
+                            success: function (response) {
+                                $('#container').highcharts({
+                                    chart: {
+                                        type: 'column'
+                                    },
+                                    title: {
+                                        text: 'Statistiques de forum ' + n
+                                    },
+                                    subtitle: {
+                                        text: 'Commentaire(s)'
+                                    },
+                                    xAxis: {
+                                        categories: [
+                                            'Jan',
+                                            'Fév',
+                                            'Mar',
+                                            'Avr',
+                                            'Mai',
+                                            'Jui',
+                                            'Jul',
+                                            'Aou',
+                                            'Sep',
+                                            'Oct',
+                                            'Nov',
+                                            'Déc'
+                                        ],
+                                        crosshair: true
+                                    },
+                                    yAxis: {
+                                        min: 0,
+                                        title: {
+                                            text: 'Nombre'
+                                        }
+                                    },
+                                    tooltip: {
+                                        headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                                        pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                                                '<td style="padding:0"><b>{point.y}</b></td></tr>',
+                                        footerFormat: '</table>',
+                                        shared: true,
+                                        useHTML: true
+                                    },
+                                    plotOptions: {
+                                        column: {
+                                            pointPadding: 0.2,
+                                            borderWidth: 0
+                                        }
+                                    },
+                                    series: [{
+                                            name: 'Commentaire(s)',
+                                            data: response
+
+                                        }]
+                                });
+                            }
+                        });
+                    });
+                </script>
+
+                <div id="container" style="min-width: 310px; height: 400px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div><!--/.row-->
+    
+    <div class="row">
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <script>
+                    $(function () {
+                        var d = new Date();
+                        var n = d.getFullYear();
+                        $.ajax({
+//                            url: Routing.generate('getCommentUser'),
+                            url: '/kk/PI/AnnuaireWeb/web/app_dev.php/back/getcommentuser',
+                            type: 'POST',
+                            dataType: "json",
+                            success: function (response) {
+                                Highcharts.chart('container2', {
+                                    chart: {
+                                        plotBackgroundColor: null,
+                                        plotBorderWidth: null,
+                                        plotShadow: false,
+                                        type: 'pie'
+                                    },
+                                    title: {
+                                        text: 'Statistiques des commentaires selon utilisateurs'
+                                    },
+                                    tooltip: {
+                                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            allowPointSelect: true,
+                                            cursor: 'pointer',
+                                            dataLabels: {
+                                                enabled: false
+                                            },
+                                            showInLegend: true
+                                        }
+                                    },
+                                    series: [{
+                                            name: 'Totale',
+                                            colorByPoint: true,
+                                            data: response
+                                        }]
+                                });
+                            }
+                        });
+                    });
+                </script>
+
+                <div id="container2" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
+        </div>
+        <div class="col-lg-6">
+            <div class="panel panel-default">
+                <script>
+                    $(function () {
+                        var d = new Date();
+                        var n = d.getFullYear();
+                        $.ajax({
+//                            url: Routing.generate('getSubjectUser'),
+                            url: '/kk/PI/AnnuaireWeb/web/app_dev.php/back/getsubjectuser',
+                            type: 'POST',
+                            dataType: "json",
+                            success: function (response) {
+                                Highcharts.chart('container1', {
+                                    chart: {
+                                        plotBackgroundColor: null,
+                                        plotBorderWidth: null,
+                                        plotShadow: false,
+                                        type: 'pie'
+                                    },
+                                    title: {
+                                        text: 'Statistiques des sujets selon utilisateurs'
+                                    },
+                                    tooltip: {
+                                        pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+                                    },
+                                    plotOptions: {
+                                        pie: {
+                                            allowPointSelect: true,
+                                            cursor: 'pointer',
+                                            dataLabels: {
+                                                enabled: false
+                                            },
+                                            showInLegend: true
+                                        }
+                                    },
+                                    series: [{
+                                            name: 'Totale',
+                                            colorByPoint: true,
+                                            data: response
+                                        }]
+                                });
+                            }
+                        });
+                    });
+                </script>
+
+                <div id="container1" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+            </div>
+        </div>
+    </div><!--/.row-->
+
+
+{% endblock %}

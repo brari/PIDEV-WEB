@@ -1,0 +1,62 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Prods edit</h1>
+
+    {{ form_start(form) }}
+    <table class="container">
+        <tr>
+            <td>Nom Produit</td>
+            <td> {{ form_widget(form.nompro) }}</td>
+
+        </tr>
+        <br>
+        <tr>
+            <td> Prix Produit</td>
+            <td> {{ form_widget(form.prixpro) }}</td>
+        </tr>
+
+        <br>
+        <tr>
+            <td>  Categorie Produit</td>
+            <td> {{ form_widget(form.categoriepro) }}</td>
+        </tr>
+        <tr>
+            <td> Details Produit</td>
+            <td> {{ form_widget(form.detailspro) }}</td>
+        </tr>
+        <br>
+        <tr>
+            <td> Nom Patisserie</td>
+            <td> {{ form_widget(form.nompat) }}</td>
+        </tr>
+        <br>
+
+        <tr>
+            <td> Disponibilite en Stock</td>
+            <td> {{ form_widget(form.stock) }}</td>
+        </tr>
+        <br>
+
+
+        <br>
+        <tr>
+            <td></td>
+            <td > {{ form_widget(form.Save) }}</td>
+        </tr>
+
+
+    </table>
+    {{ form_end(form) }}
+
+    <ul>
+        <li>
+            <a href="{{ path('prods_index') }}">Back to the list</a>
+        </li>
+        <li>
+            {{ form_start(form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(form) }}
+        </li>
+    </ul>
+{% endblock %}

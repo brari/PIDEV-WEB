@@ -1,0 +1,124 @@
+accueil_patisseries:
+    path:     /Paccueil
+    defaults: { _controller: EvenementBundle:Navigation:home }
+
+all_even:
+  path:     /alljson
+  defaults: { _controller: EvenementBundle:Default:all }
+
+ajout_even:
+  path:     /add
+  defaults: { _controller: EvenementBundle:Default:new }
+
+evenement_delete:
+  path:     /deletee/{ide}
+  defaults: { _controller:  EvenementBundle:Default:delete }
+
+participeee:
+  path:     /parttt/{ide}
+  defaults: { _controller:  EvenementBundle:Default:parti }
+
+annuleeeer:
+  path:     /annule/{ide}
+  defaults: { _controller:  EvenementBundle:Default:annuler }
+
+modifierrr:
+  path:     /modifier
+  defaults: { _controller:  EvenementBundle:Default:modif }
+
+even_evenement:
+        path:     /Eshow
+        defaults: { _controller: EvenementBundle:Default:even }
+
+client_evenement:
+    path:     /clt
+    defaults: { _controller: EvenementBundle:Default:client }
+
+affiche_clt:
+  path:     /afficheclt
+  defaults: { _controller: EvenementBundle:Default:afficheclient }
+
+retour_filtre_clt:
+  path:     /retourfiltreclt
+  defaults: { _controller: EvenementBundle:Default:retourclt }
+
+filtre_clt:
+  path:     /filtreclts
+  defaults: { _controller: EvenementBundle:Default:trierclt }
+
+affiche_even_clt:
+  path:     /affclt
+  defaults: { _controller: EvenementBundle:Default:evenclt }
+
+affiche_participation:
+  path:     /affpart
+  defaults: { _controller: EvenementBundle:Default:afficheparticipation }
+
+page_principale:
+    path:     /principal
+    defaults: { _controller: EvenementBundle:Default:show }
+
+affiche_mes_evenements:
+  path:     /affichemeseven
+  defaults: { _controller: EvenementBundle:Default:affichermesevenements }
+
+evenement_ajout:
+    path:     /ajouteven
+    defaults: { _controller:  EvenementBundle:Default:ajouter }
+
+evenement_supprimer:
+    path:     /supprimereven/{idE}
+    defaults: { _controller:  EvenementBundle:Default:supprimer }
+
+even_recherche_pat:
+    path:     /recherche
+    defaults: { _controller: EvenementBundle:Default:afficherpat }
+
+even_recherche_nomclt:
+  path:     /rechercheclt
+  defaults: { _controller: EvenementBundle:Default:afficherevennom }
+
+even_recherche_clt:
+  path:     /rechercheee
+  defaults: { _controller: EvenementBundle:Default:afficherclt }
+
+evenement_trier:
+  path:     /trie
+  defaults: { _controller: EvenementBundle:Default:trier }
+
+evenement_participe:
+  path:     /part/{idE}
+  defaults: { _controller:  EvenementBundle:Default:increment }
+
+evenement_annule:
+  path:     /annu/{idE}
+  defaults: { _controller:  EvenementBundle:Default:decrement }
+
+retour_clt:
+  path:     /retouuuur
+  defaults: { _controller:  EvenementBundle:Default:retourclt }
+
+retour_pat:
+  path:     /retouurpat
+  defaults: { _controller:  EvenementBundle:Default:retourpat }
+
+evenement_modifier:
+    path:     /modifiereven/{idE}
+    defaults: { _controller:  EvenementBundle:Default:modifier }
+
+evenement_rechercher:
+    path:     /rechercheeven
+    defaults: { _controller:  EvenementBundle:Default:rechercher }
+
+evenement_participer:
+    path:     /part
+    defaults: { _controller:  EvenementBundle:Default:rechercher }
+
+interface_patisseries:
+    path:     /interfacePat
+    defaults: { _controller: EvenementBundle:Navigation:patisseries }
+
+interface_forum:
+    path:     /interfaceForum
+    defaults: { _controller: EvenementBundle:Navigation:forum }
+

@@ -1,0 +1,61 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+   <center><b><h1 style="color:#a94442;">Reclamation Details</h1></b></center>
+
+    <table class="wthree-form">
+        <tbody>
+        <tr>
+            <th>Id</th>
+            <td>{{ reclamation.id }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ reclamation.type }}</td>
+        </tr>
+        <tr>
+            <th>Contenu</th>
+            <td>{{ reclamation.contenu }}</td>
+        </tr>
+        <tr>
+            <th>Date</th>
+            <td>{% if reclamation.date %}{{ reclamation.date|date('Y-m-d') }}{% endif %}</td>
+        </tr>
+        <tr>
+            <th>Statut</th>
+            <td>{{ reclamation.statut }}</td>
+        </tr>
+        <tr>
+            <th>Idreclamant</th>
+            <td>{{ reclamation.idReclamant }}</td>
+        </tr>
+        <tr>
+            <th>Reponse</th>
+            <td>{{ reclamation.reponse }}</td>
+        </tr>
+        <tr>
+            <th>Decision</th>
+            <td>{{ reclamation.decision }}</td>
+        </tr>
+        <tr>
+            <th>Objet</th>
+            <td>{{ reclamation.objet }}</td>
+        </tr>
+        <tr>
+            <th>Nomconcerne</th>
+            <td>{{ reclamation.nomConcerne }}</td>
+        </tr>
+        </tbody>
+    </table>
+    </br>
+    </br>
+    <center><a href="{{ path('crudRec_index') }}">retour à la liste</a></center></br>
+
+    <center>    <a href="{{ path('crudRec_edit', { 'id': reclamation.id }) }}">Traiter</a></center></br>
+
+     <center>   {{ form_start(delete_form) }}
+        <input type="submit" value="Delete">
+        {{ form_end(delete_form) }}
+    </center>
+
+{% endblock %}

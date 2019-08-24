@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Cmdprod</h1>
+
+    <table>
+        <tbody>
+            <tr>
+                <th>Idcp</th>
+                <td>{{ cmdprod.idcp }}</td>
+            </tr>
+            <tr>
+                <th>Idu</th>
+                <td>{{ cmdprod.idu }}</td>
+            </tr>
+            <tr>
+                <th>Idpro</th>
+                <td>{{ cmdprod.idpro }}</td>
+            </tr>
+            <tr>
+                <th>Nompro</th>
+                <td>{{ cmdprod.nompro }}</td>
+            </tr>
+            <tr>
+                <th>Prixpro</th>
+                <td>{{ cmdprod.prixpro }}</td>
+            </tr>
+            <tr>
+                <th>Categoriepro</th>
+                <td>{{ cmdprod.categoriepro }}</td>
+            </tr>
+            <tr>
+                <th>Detailspro</th>
+                <td>{{ cmdprod.detailspro }}</td>
+            </tr>
+            <tr>
+                <th>Nompat</th>
+                <td>{{ cmdprod.nompat }}</td>
+            </tr>
+            <tr>
+                <th>Image</th>
+                <td>{{ cmdprod.image }}</td>
+            </tr>
+            <tr>
+                <th>Date</th>
+                <td>{{ cmdprod.date }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('cmdprod_index') }}">Back to the list</a>
+        </li>
+        <li>
+            <a href="{{ path('cmdprod_edit', { 'idcp': cmdprod.idcp }) }}">Edit</a>
+        </li>
+        <li>
+            {{ form_start(delete_form) }}
+                <input type="submit" value="Delete">
+            {{ form_end(delete_form) }}
+        </li>
+    </ul>
+{% endblock %}

@@ -1,0 +1,127 @@
+<style>
+    .notif{
+        margin-right: 50px;
+        padding: 7px;
+        color: #fff;
+        background-color: #f00;
+        font-size: 16px;
+        font-weight: bold;
+    }
+</style>
+<div class="block-forum">
+    <a href="#top" id="top-button">
+        <i class="icon-angle-up"></i>
+    </a>
+    <div class="row">
+        <div class="large-6 column lpad top-msg breadcrumb">
+            <span id="breadcrumb">
+                <a href="{{ path('Acceuil_Forum') }}"><i class="icon-home"></i></a>
+            </span>
+        </div>
+        <div class="large-6 small-12 column lpad top-msg ar breadcrumb">
+            <a href="{{path('notif_Forum')}}"><span class="notif">{{nbnotif}}</span></a>
+            Bienvenue,
+            <a href="#" title="Dernière connexion : {{ app.user.lastLogin|date('Y-m-d H:i:s')}}" class="underline">{{ app.user.nom }} {{ app.user.prenom }}</a>
+        </div>
+    </div>
+    <nav class="menu">
+        <a href="{{ path('Acceuil_Forum') }}">Forum</a>
+        <a href="{{ path('subject_new') }}">Nouveau Poste</a>
+        <a href="{{ path('my_subjects') }}">Mes Postes</a>
+    </nav>
+
+    <div class="row mt">
+        <div class="large-12">
+            <div class="large-12 forum-category rounded top">
+                <div class="large-8 small-10 column lpad">
+                    Thèmes
+                </div>
+                <div class="large-4 small-2 column lpad ar">
+                    <a data-connect>
+                        <i class="icon-collapse-top"></i>
+                    </a>
+                </div>
+            </div>
+
+            <div class="toggleview">
+                <div class="large-12 forum-head">
+                    <div class="large-8 small-8 column lpad">
+                        Forums
+                    </div>
+                    <div class="large-1 column lpad">
+                        Sujets
+                    </div>
+                    <div class="large-1 column lpad">
+                        Poster
+                    </div>
+                    <div class="large-2 small-4 column lpad">
+                        Dernier Sujet
+                    </div>
+                </div>
+                {%for theme in themes%}
+                    <div class="large-12 forum-topic">
+                        <div class="large-1 column lpad">
+                            <i class="{{ theme.icon }}"></i>
+                        </div>
+                        <div class="large-7 small-8 column lpad">
+                            <span class="overflow-control">
+                                <a title="{{ theme.description }}" href="{{ path('app_forum_subject', { 'theme': theme.id }) }}">{{ theme.name }}</a>
+                            </span>
+                            <span class="overflow-control">
+                                {{ theme.description }}
+                            </span>
+                        </div>
+                        <div class="large-1 column lpad">
+                            <span class="center">{{ theme.subjects }}</span>
+                        </div>
+                        <div class="large-1 column lpad">
+                            <span class="center">{{ theme.posts }}</span>
+                        </div>
+                        <div class="large-2 small-4 column pad">
+                            {% if theme.lastSubject %}
+                                {% for t in theme.lastSubject %}
+                                    <span>
+                                        <a href="#" title="{{ t.title }}">{{ t.title|truncate(16)}}</a>
+                                    </span>
+                                    <span>{{ t.date|date('Y-m-d g:iA') }}</span>
+                                    <span>by <a href="#">{{ t.iduser.username }}</a></span>
+                                    {% endfor %}
+                                {% else %}
+                                <span>
+                                    <a href="#"></a>
+                                </span>
+                                <span>Aucun sujet trouvé</span>
+                                <span><a href="#"></a></span>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endfor%}
+
+            </div>
+        </div>
+    </div>
+
+
+    <br><br>
+    <div class="row mt mb">
+        <div class="large-12">
+            <div class="large-12 small-12 forum-category rounded top lpad">
+                <span>Statistiques du Forum</span>
+            </div>
+            <div class="large-12 small-12 normal lpad">
+                <h1 class="inset">Total</h1>
+                <p>{{ stats.messages }} message(s)<br>
+                    {{ stats.sujets }} sujet(s)<br><br>- - - - - - - - - - - - - -<br>
+                    {{ stats.users }} membre(s)</p>
+                <h1 class="inset">Aujourd'hui</h1>
+                <p>Sujets par jour : {{ stats.sujetsParJr }}<br>
+                    Messages par jour : {{ stats.messagesParJr }}<br>
+                    Utilisateurs par jour : {{ stats.usersParJr }}<br><br>
+                    {% if is_granted('IS_AUTHENTICATED_FULLY') %}
+                        Sujets par vous : {{ stats.sujetsParVous }}<br>
+                        Messages par vous : {{ stats.messagesParVous }}<br>
+                    {% endif %}
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,36 @@
+{% extends 'base.html.twig' %}
+{% block body %}
+    <h1>Bloquage Utilisateur</h1>
+    <table class="table table-bordered table-striped" >
+        {{   form_start(edit_form) }}
+        <tr>
+            <td>{{ form_label(edit_form.decision)}}</td>
+            <td>
+                {{ form_widget(edit_form.decision) }}
+            </td>
+        </tr>
+        <tr>
+            <td>{{ form_label(edit_form.reponse)}}</td>
+            <td>
+                {{ form_widget(edit_form.reponse) }}
+            </td>
+        </tr>
+        <td>
+            <input class="btn btn-warning" type="submit" value="Valider">
+        </td>
+        </tr>
+
+
+        {{ form_end(edit_form) }}
+    </table>
+
+    <a href="{{ path('crudRec_index') }}">Retour à la liste</a>
+    {{ form_start(delete_form) }}
+    <input type="submit" value="Delete">
+    {{ form_end(delete_form) }}
+
+   {# <p>Nom : {{ user.nom }} </p>
+    <p>prenom : {{ user.prenom }} </p>
+    <p>telephone : {{ user.telephone }} </p>
+    <p>adresse : {{ user.adresse }} </p>#}
+{% endblock %}

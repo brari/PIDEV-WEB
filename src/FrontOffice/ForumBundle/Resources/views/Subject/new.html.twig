@@ -1,0 +1,209 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <style>
+        .containt{
+            margin-left: auto;
+            margin-right: auto;
+            margin-bottom: 80px;
+            min-width: 723px;
+            max-width: 723px;
+        }
+        .subject{
+            font-family: inherit;
+            font-size: 15px;
+            font-weight: normal;
+            line-height: 27px;
+            background-color: #FFFFFF;
+            color: #404852;
+            border: 1px solid #EDEDED;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+            padding: 20px 20px 20px 20px;
+            border-radius: 3px;
+        }
+        .title{
+            font-family: inherit;
+            font-size: 28px;
+            font-weight: bold;
+            line-height: 25.2px;
+            color: #404852;
+            max-width: 850px;
+            margin-left: auto;
+            margin-right: auto;
+            margin-top: 50px;
+        }
+        .alert {
+            padding: 15px;
+            padding-left: 70px;
+            margin-top: 1.875rem;
+            margin-bottom: -15px;
+            position: relative;
+            border: 1px solid #aed4a5;
+            border-radius: 3px;
+            max-width: 630px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .alert-success{
+            color: #559944;
+            border: 1px solid #aed4a5;
+            background-color: #dbf6d3;
+        }
+        .alert-icon-success {
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 45px;
+            float: left;
+            padding-top: 10px;
+            font-size: 1.4rem;
+            text-align: center;
+            font-weight: bold;
+            background-color: #baeab0;
+        }
+        .text{
+            font-family: inherit;
+            font-size: 17px;
+            font-weight: normal;
+            line-height: 27px;
+            color: #404852;
+        }
+        .btn {
+            display: inline-block;
+            height: 40px;
+            padding: 0 15px;
+            line-height: 36px;
+            color: #FFF;
+            text-align: center;
+            text-decoration: none !important;
+            font-weight: bold;
+            background-color: #78AB4E;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all .3s;
+            border-radius: 3px;
+            transition-duration: .3s;
+        }
+        .btn:hover {
+            border: 2px solid #78AB4E;
+            color: #78AB4E;
+            background-color: transparent;
+        }
+        .btn2 {
+            display: inline-block;
+            height: 40px;
+            padding: 0 15px;
+            line-height: 36px;
+            color: #FFF;
+            text-align: center;
+            text-decoration: none !important;
+            font-weight: bold;
+            background-color: #3985a3;
+            border: 2px solid transparent;
+            cursor: pointer;
+            transition: all .3s;
+            border-radius: 3px;
+            transition-duration: .3s;
+        }
+        .btn2:hover {
+            border: 2px solid #3985a3;
+            color: #3985a3;
+            background-color: transparent;
+        }
+        .tright{
+            float: right;
+        }
+        .input1{
+
+        }
+        .input label, .textarea label {
+            font-family: inherit;
+            font-size: 16px;
+            font-weight: bold;
+            line-height: 25.2px;
+            color: #404852;
+            margin-top: 28px;
+        }
+        .input label {
+            width: 334px;
+            display: inline-block;
+        }
+        .input input[type='text'], .input input[type='email']{
+            font-family: arial;
+            font-size: 16px;
+            font-weight: normal;
+            background-color: #FAFAFA;
+            color: #393F49;
+            height: 50px;
+            width: 330px;
+            padding: 0 20px 0 20px;
+            border-radius: 3px;
+        }
+        textArea {
+            font-family: arial;
+            font-size: 16px;
+            font-weight: normal;
+            background-color: #FAFAFA;
+            color: #393F49;
+            padding: 20px 20px 20px 20px;
+            border-radius: 3px;
+        }
+        .input input[type='text']:focus, .input input[type='email']:focus, textArea{
+            background-color: #F7F7F7;
+        }
+        .notif{
+        margin-right: 50px;
+        padding: 7px;
+        color: #fff;
+        background-color: #f00;
+        font-size: 16px;
+        font-weight: bold;
+    }
+    </style>
+    <div class="block-forum">
+        <nav class="menu">
+            <a href="{{path('notif_Forum')}}"><span class="notif">{{nbnotif}}</span></a>
+            <a href="{{ path('Acceuil_Forum') }}">Forum</a>
+            <a href="{{ path('subject_new') }}">Nouveau Poste</a>
+            <a href="{{ path('my_subjects') }}">Mes Postes</a>
+        </nav>
+        <div class="containt">
+            <div class="flashbag">
+                {% for msg in app.session.flashbag.get('success') %}
+                    <div class="alert alert-success">
+                        <div class="alert-icon-success">
+                            <span class="icon icon-check"></span>
+                        </div>
+                        {{ msg }}
+                    </div>
+                {% endfor %}
+            </div>
+            <center><h1 class="tit">Création d'un nouveau Sujet</h1></center>
+
+            {{ form_start(form) }}
+
+            {{ form_label(form.theme) }}
+            {{ form_widget(form.theme) }}
+            {{ form_errors(form.theme) }}
+
+            {{ form_label(form.title) }}
+            {{ form_widget(form.title) }}
+            {{ form_errors(form.title) }}
+
+            {{ form_label(form.core) }}
+            {{ form_widget(form.core) }}
+            {{ form_errors(form.core) }}
+
+
+            {{ form_widget(form._token) }}
+            <center><input type="submit" value="Ajouter" class="btn">
+                <a href="{{ path('Acceuil_Forum') }}" class="btn2">Annuler</a></center>
+                {{ form_end(form, {'render_rest': false}) }}
+
+        </div>
+    </div>
+{% endblock body %}
+

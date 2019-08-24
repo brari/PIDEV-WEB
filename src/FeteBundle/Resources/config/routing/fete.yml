@@ -1,0 +1,24 @@
+crud_index:
+    path:     /
+    defaults: { _controller: "FeteBundle:Fete:index" }
+    methods:  GET
+
+crud_show:
+    path:     /{idf}/show
+    defaults: { _controller: "FeteBundle:Fete:show" }
+    methods:  GET
+
+crud_new:
+    path:     /new
+    defaults: { _controller: "FeteBundle:Fete:new" }
+    methods:  [GET, POST]
+
+crud_edit:
+    path:     /{idf}/edit
+    defaults: { _controller: "FeteBundle:Fete:edit" }
+    methods:  [GET, POST]
+
+crud_delete:
+    path:     /{idf}/delete
+    defaults: { _controller: "FeteBundle:Fete:delete" }
+    methods:  DELETE

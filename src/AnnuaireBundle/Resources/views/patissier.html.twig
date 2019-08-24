@@ -13,6 +13,7 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
         <link href="{{ asset('Patisserie/css/bootstrap.css') }}" rel='stylesheet' type='text/css' />
         <link href="{{ asset('Patisserie/css/style.css') }}" rel='stylesheet' type='text/css' />
         <link href="{{ asset('Patisserie/css/patisserie.css') }}" rel='stylesheet' type='text/css' />
+        <link href="{{ asset('Patisserie/css/fete.css') }}" rel='stylesheet' type='text/css' />
 
         <script src="{{ asset('Patisserie/js/jquery-1.11.0.min.js') }}"></script>
         <link href='http://fonts.googleapis.com/css?family=Exo:100,200,300,400,500,600,700,800,900,100italic,200italic,300italic,400italic,500italic,600italic,700italic,800italic,900italic' rel='stylesheet' type='text/css'>
@@ -23,6 +24,9 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                 $(".scroll").click(function(event){
                     event.preventDefault();
                     $('html,body').animate({scrollTop:$(this.hash).offset().top},1000);
+                });
+                $('#b').click(function () {
+                    $('#f').show();
                 });
             });
         </script>
@@ -101,11 +105,12 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
                         <li class="active"><a href="{{ path('patisserie_homepage') }}" class="active">Home</a></li>
                         <a href="{{ path('patisserie_liste') }}">Toutes les Patisseries</a>
                         <a href="{{ path('interface_forum') }}">Forum</a>
-                        <a href="{{ path('interface_evenements') }}">Evenement</a>
-                        <a href="#">Organisation des fêtes</a>
-                        <a href="#">Réclamations</a>
-                        {#<li><a href="#">Mon Compte</a></li> #}
-                        <a href="#">Contact</a>
+                        <a href="{{ path('even_evenement') }}">Evenement</a>
+                        <a href="{{ path('interface_fete') }}">Organisation des fêtes</a>
+                        <a href="{{ path('interface_reclamation') }}">Reclamation</a>
+                        <a href="{{ path('recette_new') }}">Recettes</a>
+                        {#<li><a href="#">Mon Compte</a></li>
+                        <a href="#">Contact</a>#}
                     </ul>
                     <!----start-top-nav-script---->
                     <script type="text/javascript" src="{{ asset('Patisserie/js/responsive-nav.js') }}"></script>

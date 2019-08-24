@@ -1,0 +1,7 @@
+fete_crud:
+    resource: "@FeteBundle/Resources/config/routing/fete.yml"
+    prefix:   /crud
+
+fete_homepage:
+    path:     /fete
+    defaults: { _controller: FeteBundle:Default:index }

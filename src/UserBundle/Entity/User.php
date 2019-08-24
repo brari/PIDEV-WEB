@@ -64,6 +64,7 @@ class User extends BaseUser
      */
     private $pdf;
 
+
     public function __construct()
     {
         parent::__construct();
